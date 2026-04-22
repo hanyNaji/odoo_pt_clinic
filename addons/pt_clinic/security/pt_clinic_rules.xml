@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rule_pt_branch_company" model="ir.rule">
+        <field name="name">PT Branch by Company</field>
+        <field name="model_id" ref="model_pt_branch"/>
+        <field name="domain_force">[('clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_therapist')), (4, ref('pt_clinic.group_pt_clinic_assistant')), (4, ref('pt_clinic.group_pt_clinic_billing'))]"/>
+    </record>
+
+    <record id="rule_pt_patient_company" model="ir.rule">
+        <field name="name">PT Patient by Company</field>
+        <field name="model_id" ref="model_pt_patient"/>
+        <field name="domain_force">[('clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_therapist')), (4, ref('pt_clinic.group_pt_clinic_assistant')), (4, ref('pt_clinic.group_pt_clinic_billing'))]"/>
+    </record>
+
+    <record id="rule_pt_appointment_company" model="ir.rule">
+        <field name="name">PT Appointment by Company</field>
+        <field name="model_id" ref="model_pt_appointment"/>
+        <field name="domain_force">[('clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_therapist')), (4, ref('pt_clinic.group_pt_clinic_assistant')), (4, ref('pt_clinic.group_pt_clinic_billing'))]"/>
+    </record>
+
+    <record id="rule_pt_assessment_company" model="ir.rule">
+        <field name="name">PT Assessment by Company</field>
+        <field name="model_id" ref="model_pt_assessment"/>
+        <field name="domain_force">[('clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_therapist')), (4, ref('pt_clinic.group_pt_clinic_assistant')), (4, ref('pt_clinic.group_pt_clinic_billing'))]"/>
+    </record>
+
+    <record id="rule_pt_therapy_sheet_company" model="ir.rule">
+        <field name="name">PT Therapy Sheet by Company</field>
+        <field name="model_id" ref="model_pt_therapy_sheet"/>
+        <field name="domain_force">[('clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_therapist')), (4, ref('pt_clinic.group_pt_clinic_assistant'))]"/>
+    </record>
+
+    <record id="rule_pt_therapy_sheet_line_company" model="ir.rule">
+        <field name="name">PT Therapy Sheet Line by Company</field>
+        <field name="model_id" ref="model_pt_therapy_sheet_line"/>
+        <field name="domain_force">[('clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_therapist')), (4, ref('pt_clinic.group_pt_clinic_assistant'))]"/>
+    </record>
+
+    <record id="rule_pt_treatment_plan_company" model="ir.rule">
+        <field name="name">PT Treatment Plan by Company</field>
+        <field name="model_id" ref="model_pt_treatment_plan"/>
+        <field name="domain_force">[('clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_therapist')), (4, ref('pt_clinic.group_pt_clinic_assistant')), (4, ref('pt_clinic.group_pt_clinic_billing'))]"/>
+    </record>
+
+    <record id="rule_pt_session_company" model="ir.rule">
+        <field name="name">PT Session by Company</field>
+        <field name="model_id" ref="model_pt_session"/>
+        <field name="domain_force">[('clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_therapist')), (4, ref('pt_clinic.group_pt_clinic_assistant')), (4, ref('pt_clinic.group_pt_clinic_billing'))]"/>
+    </record>
+
+    <record id="rule_pt_package_company" model="ir.rule">
+        <field name="name">PT Package by Company</field>
+        <field name="model_id" ref="model_pt_treatment_package"/>
+        <field name="domain_force">[('clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_therapist')), (4, ref('pt_clinic.group_pt_clinic_assistant')), (4, ref('pt_clinic.group_pt_clinic_billing'))]"/>
+    </record>
+
+    <record id="rule_pt_usage_company" model="ir.rule">
+        <field name="name">PT Package Usage by Company</field>
+        <field name="model_id" ref="model_pt_package_usage"/>
+        <field name="domain_force">[('clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_therapist')), (4, ref('pt_clinic.group_pt_clinic_assistant')), (4, ref('pt_clinic.group_pt_clinic_billing'))]"/>
+    </record>
+
+    <record id="rule_pt_offer_company" model="ir.rule">
+        <field name="name">PT Offer by Company</field>
+        <field name="model_id" ref="model_pt_discount_offer"/>
+        <field name="domain_force">[('clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_therapist')), (4, ref('pt_clinic.group_pt_clinic_assistant')), (4, ref('pt_clinic.group_pt_clinic_billing'))]"/>
+    </record>
+
+    <record id="rule_pt_contract_company" model="ir.rule">
+        <field name="name">PT Contract by Company</field>
+        <field name="model_id" ref="model_pt_company_contract"/>
+        <field name="domain_force">[('clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_therapist')), (4, ref('pt_clinic.group_pt_clinic_assistant')), (4, ref('pt_clinic.group_pt_clinic_billing'))]"/>
+    </record>
+
+    <record id="rule_pt_contract_line_company" model="ir.rule">
+        <field name="name">PT Contract Line by Company</field>
+        <field name="model_id" ref="model_pt_company_contract_line"/>
+        <field name="domain_force">[('clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_therapist')), (4, ref('pt_clinic.group_pt_clinic_assistant')), (4, ref('pt_clinic.group_pt_clinic_billing'))]"/>
+    </record>
+
+    <record id="rule_pt_reminder_log_company" model="ir.rule">
+        <field name="name">PT Reminder Log by Company</field>
+        <field name="model_id" ref="model_pt_reminder_log"/>
+        <field name="domain_force">[('appointment_id.clinic_company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('pt_clinic.group_pt_clinic_manager')), (4, ref('pt_clinic.group_pt_clinic_billing'))]"/>
+    </record>
+</odoo>
+

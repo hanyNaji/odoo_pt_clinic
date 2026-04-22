@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pt_clinic_dashboard_form" model="ir.ui.view">
+        <field name="name">pt.clinic.dashboard.form</field>
+        <field name="model">pt.clinic.dashboard</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0" string="وقاية" class="o_pt_clinic_dashboard_form">
+                <sheet class="o_pt_clinic_dashboard_sheet">
+                    <div class="o_pt_clinic_dashboard">
+                        <div class="o_pt_clinic_dashboard_header">
+                            <img class="o_pt_clinic_dashboard_logo" src="/pt_clinic/static/src/img/wiqaya_logo.png" alt="وقاية"/>
+                            <div class="o_pt_clinic_dashboard_intro">
+                                <h1>وقاية</h1>
+                                <p>Physiotherapy clinic management with a simpler clinic-first home page.</p>
+                            </div>
+                        </div>
+
+                        <div class="o_pt_clinic_navbar">
+                            <button name="action_open_patients" type="object" class="btn btn-primary o_pt_clinic_nav_button">
+                                المرضى
+                            </button>
+                            <button name="action_open_appointments" type="object" class="btn btn-primary o_pt_clinic_nav_button">
+                                المواعيد
+                            </button>
+                            <button
+                                name="action_open_assessments"
+                                type="object"
+                                class="btn btn-secondary o_pt_clinic_nav_button"
+                                groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager"
+                            >
+                                التقييمات
+                            </button>
+                            <button
+                                name="action_open_treatment_plans"
+                                type="object"
+                                class="btn btn-secondary o_pt_clinic_nav_button"
+                                groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager"
+                            >
+                                الخطط
+                            </button>
+                            <button
+                                name="action_open_sessions"
+                                type="object"
+                                class="btn btn-secondary o_pt_clinic_nav_button"
+                                groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager"
+                            >
+                                الجلسات
+                            </button>
+                            <button
+                                name="action_open_packages"
+                                type="object"
+                                class="btn btn-secondary o_pt_clinic_nav_button"
+                                groups="pt_clinic.group_pt_clinic_billing,pt_clinic.group_pt_clinic_manager"
+                            >
+                                الباقات
+                            </button>
+                            <button
+                                name="action_open_billing"
+                                type="object"
+                                class="btn btn-secondary o_pt_clinic_nav_button"
+                                groups="pt_clinic.group_pt_clinic_billing,pt_clinic.group_pt_clinic_manager"
+                            >
+                                الفوترة
+                            </button>
+                            <button
+                                name="action_open_reports"
+                                type="object"
+                                class="btn btn-secondary o_pt_clinic_nav_button"
+                                groups="pt_clinic.group_pt_clinic_billing,pt_clinic.group_pt_clinic_manager"
+                            >
+                                التقارير
+                            </button>
+                            <button
+                                name="action_open_settings"
+                                type="object"
+                                class="btn btn-secondary o_pt_clinic_nav_button"
+                                groups="pt_clinic.group_pt_clinic_manager"
+                            >
+                                الإعدادات
+                            </button>
+                        </div>
+
+                        <div class="o_pt_clinic_stats_grid">
+                            <div class="o_pt_clinic_stat_card">
+                                <span class="o_pt_clinic_stat_label">المرضى</span>
+                                <field name="patient_count" readonly="1"/>
+                            </div>
+                            <div class="o_pt_clinic_stat_card">
+                                <span class="o_pt_clinic_stat_label">مواعيد اليوم</span>
+                                <field name="appointment_today_count" readonly="1"/>
+                            </div>
+                            <div class="o_pt_clinic_stat_card">
+                                <span class="o_pt_clinic_stat_label">التقييمات</span>
+                                <field name="assessment_count" readonly="1"/>
+                            </div>
+                            <div class="o_pt_clinic_stat_card">
+                                <span class="o_pt_clinic_stat_label">الخطط النشطة</span>
+                                <field name="active_plan_count" readonly="1"/>
+                            </div>
+                            <div class="o_pt_clinic_stat_card">
+                                <span class="o_pt_clinic_stat_label">الجلسات</span>
+                                <field name="session_count" readonly="1"/>
+                            </div>
+                            <div class="o_pt_clinic_stat_card">
+                                <span class="o_pt_clinic_stat_label">الباقات</span>
+                                <field name="package_count" readonly="1"/>
+                            </div>
+                            <div class="o_pt_clinic_stat_card">
+                                <span class="o_pt_clinic_stat_label">التذكيرات المعلقة</span>
+                                <field name="reminder_pending_count" readonly="1"/>
+                            </div>
+                        </div>
+
+                        <div class="o_pt_clinic_dashboard_notes">
+                            <h2>وصول سريع</h2>
+                            <p>استخدم شريط التنقل الثابت بالأعلى للتنقل السريع بين المرضى والمواعيد والعلاج والفوترة والتقارير.</p>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pt_clinic_dashboard" model="ir.actions.act_window">
+        <field name="name">وقاية</field>
+        <field name="res_model">pt.clinic.dashboard</field>
+        <field name="res_id" ref="pt_dashboard_main"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_pt_clinic_dashboard_form"/>
+        <field name="target">current</field>
+    </record>
+</odoo>

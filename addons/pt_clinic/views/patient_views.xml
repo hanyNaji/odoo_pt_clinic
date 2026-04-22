@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pt_patient_tree" model="ir.ui.view">
+        <field name="name">pt.patient.tree</field>
+        <field name="model">pt.patient</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="age_years"/>
+                <field name="national_id"/>
+                <field name="phone"/>
+                <field name="branch_id"/>
+                <field name="company_id"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pt_patient_form" model="ir.ui.view">
+        <field name="name">pt.patient.form</field>
+        <field name="model">pt.patient</field>
+        <field name="arch" type="xml">
+            <form string="المريض | Patient">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="code" readonly="1"/>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="birth_date"/>
+                            <field name="age_years" readonly="1"/>
+                            <field name="gender"/>
+                            <field name="national_id"/>
+                            <field name="governorate"/>
+                        </group>
+                        <group>
+                            <field name="clinic_company_id" groups="base.group_multi_company"/>
+                            <field name="branch_id"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="whatsapp"/>
+                            <field name="job_title"/>
+                            <field name="primary_physician"/>
+                            <field name="company_id"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="emergency_contact"/>
+                            <field name="emergency_relation"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="الملف الطبي | Medical">
+                            <group>
+                                <field name="medical_history"/>
+                                <field name="allergy_notes"/>
+                            </group>
+                        </page>
+                        <page string="المواعيد | Appointments">
+                            <field name="appointment_ids"/>
+                        </page>
+                        <page string="التقييمات | Assessments">
+                            <field name="assessment_ids"/>
+                        </page>
+                        <page string="الخطط العلاجية | Care Plans">
+                            <field name="treatment_plan_ids"/>
+                        </page>
+                        <page string="الجلسات | Sessions">
+                            <field name="session_ids"/>
+                        </page>
+                        <page string="الملفات العلاجية | Therapy Sheets">
+                            <field name="therapy_sheet_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pt_patient" model="ir.actions.act_window">
+        <field name="name">المرضى | Patients</field>
+        <field name="res_model">pt.patient</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

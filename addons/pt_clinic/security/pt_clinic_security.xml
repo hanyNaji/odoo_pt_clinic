@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_pt_clinic" model="ir.module.category">
+        <field name="name">وقاية | Wiqaya</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="privilege_pt_clinic_access" model="res.groups.privilege">
+        <field name="name">Clinic Access</field>
+        <field name="category_id" ref="pt_clinic.module_category_pt_clinic"/>
+    </record>
+
+    <record id="group_pt_clinic_therapist" model="res.groups">
+        <field name="name">Therapist / معالج</field>
+        <field name="privilege_id" ref="pt_clinic.privilege_pt_clinic_access"/>
+        <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_pt_clinic_assistant" model="res.groups">
+        <field name="name">Reception / استقبال</field>
+        <field name="privilege_id" ref="pt_clinic.privilege_pt_clinic_access"/>
+        <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_pt_clinic_billing" model="res.groups">
+        <field name="name">Billing / محاسبة</field>
+        <field name="privilege_id" ref="pt_clinic.privilege_pt_clinic_access"/>
+        <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_pt_clinic_manager" model="res.groups">
+        <field name="name">Manager / مدير</field>
+        <field name="privilege_id" ref="pt_clinic.privilege_pt_clinic_access"/>
+        <field name="implied_ids" eval="[Command.link(ref('pt_clinic.group_pt_clinic_therapist')), Command.link(ref('pt_clinic.group_pt_clinic_assistant')), Command.link(ref('pt_clinic.group_pt_clinic_billing'))]"/>
+    </record>
+
+    <!-- Ensure first login has access to PT Clinic menus/configuration -->
+    <record id="base.user_admin" model="res.users">
+        <field name="group_ids" eval="[Command.link(ref('pt_clinic.group_pt_clinic_manager'))]"/>
+    </record>
+</odoo>

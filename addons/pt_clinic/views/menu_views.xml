@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="menu_pt_clinic_root"
+        name="وقاية"
+        action="action_pt_clinic_dashboard"
+        sequence="10"
+        groups="base.group_user"
+        web_icon="pt_clinic,static/src/img/wiqaya_logo.png"
+    />
+
+    <menuitem
+        id="menu_pt_clinic_patients"
+        name="المرضى"
+        parent="menu_pt_clinic_root"
+        action="action_pt_patient"
+        sequence="10"
+        groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager,pt_clinic.group_pt_clinic_assistant"
+    />
+    <menuitem
+        id="menu_pt_clinic_appointments"
+        name="المواعيد"
+        parent="menu_pt_clinic_root"
+        action="action_pt_appointment"
+        sequence="20"
+        groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager,pt_clinic.group_pt_clinic_assistant"
+    />
+
+    <menuitem
+        id="menu_pt_clinic_treatment_root"
+        name="العلاج"
+        parent="menu_pt_clinic_root"
+        sequence="30"
+        groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager"
+    />
+    <menuitem
+        id="menu_pt_clinic_therapy_sheet"
+        name="الملفات العلاجية | Therapy Sheets"
+        parent="menu_pt_clinic_treatment_root"
+        action="action_pt_therapy_sheet"
+        sequence="5"
+        groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager"
+    />
+    <menuitem
+        id="menu_pt_clinic_assessment"
+        name="التقييمات | Assessments"
+        parent="menu_pt_clinic_treatment_root"
+        action="action_pt_assessment"
+        sequence="10"
+        groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager"
+    />
+    <menuitem
+        id="menu_pt_clinic_plan"
+        name="خطط العلاج | Treatment Plans"
+        parent="menu_pt_clinic_treatment_root"
+        action="action_pt_treatment_plan"
+        sequence="20"
+        groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager"
+    />
+    <menuitem
+        id="menu_pt_clinic_session"
+        name="الجلسات | Sessions"
+        parent="menu_pt_clinic_treatment_root"
+        action="action_pt_session"
+        sequence="30"
+        groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager"
+    />
+
+    <menuitem
+        id="menu_pt_clinic_billing_root"
+        name="الفوترة"
+        parent="menu_pt_clinic_root"
+        sequence="40"
+        groups="pt_clinic.group_pt_clinic_manager,pt_clinic.group_pt_clinic_billing"
+    />
+    <menuitem
+        id="menu_pt_clinic_package"
+        name="الباقات | Packages"
+        parent="menu_pt_clinic_billing_root"
+        action="action_pt_package"
+        sequence="10"
+        groups="pt_clinic.group_pt_clinic_manager,pt_clinic.group_pt_clinic_billing"
+    />
+    <menuitem
+        id="menu_pt_clinic_discount"
+        name="عروض الخصم | Discount Offers"
+        parent="menu_pt_clinic_billing_root"
+        action="action_pt_discount_offer"
+        sequence="20"
+        groups="pt_clinic.group_pt_clinic_manager,pt_clinic.group_pt_clinic_billing"
+    />
+    <menuitem
+        id="menu_pt_clinic_contract"
+        name="عقود الشركات | Company Contracts"
+        parent="menu_pt_clinic_billing_root"
+        action="action_pt_company_contract"
+        sequence="30"
+        groups="pt_clinic.group_pt_clinic_manager,pt_clinic.group_pt_clinic_billing"
+    />
+    <menuitem
+        id="menu_pt_clinic_invoice_wizard"
+        name="إنشاء فاتورة | Create Invoice"
+        parent="menu_pt_clinic_billing_root"
+        action="action_pt_session_invoicing_wizard"
+        sequence="40"
+        groups="pt_clinic.group_pt_clinic_manager,pt_clinic.group_pt_clinic_billing"
+    />
+
+    <menuitem
+        id="menu_pt_clinic_reports_root"
+        name="التقارير"
+        parent="menu_pt_clinic_root"
+        sequence="50"
+        groups="pt_clinic.group_pt_clinic_manager,pt_clinic.group_pt_clinic_billing"
+    />
+    <menuitem
+        id="menu_pt_clinic_report_sessions"
+        name="تحليلات الجلسات | Session Analytics"
+        parent="menu_pt_clinic_reports_root"
+        action="action_pt_session_reporting"
+        sequence="10"
+        groups="pt_clinic.group_pt_clinic_manager,pt_clinic.group_pt_clinic_billing"
+    />
+    <menuitem
+        id="menu_pt_clinic_report_appointments"
+        name="تحليلات المواعيد | Appointment Analytics"
+        parent="menu_pt_clinic_reports_root"
+        action="action_pt_appointment_reporting"
+        sequence="20"
+        groups="pt_clinic.group_pt_clinic_manager,pt_clinic.group_pt_clinic_billing"
+    />
+    <menuitem
+        id="menu_pt_clinic_report_reminders"
+        name="سجل التذكيرات | Reminder Logs"
+        parent="menu_pt_clinic_reports_root"
+        action="action_pt_reminder_logs"
+        sequence="30"
+        groups="pt_clinic.group_pt_clinic_manager,pt_clinic.group_pt_clinic_billing"
+    />
+
+    <menuitem
+        id="menu_pt_clinic_config_root"
+        name="الإعدادات"
+        parent="menu_pt_clinic_root"
+        sequence="60"
+        groups="pt_clinic.group_pt_clinic_manager"
+    />
+    <menuitem
+        id="menu_pt_clinic_branch"
+        name="الفروع | Branches"
+        parent="menu_pt_clinic_config_root"
+        action="action_pt_branch"
+        sequence="10"
+        groups="pt_clinic.group_pt_clinic_manager"
+    />
+</odoo>

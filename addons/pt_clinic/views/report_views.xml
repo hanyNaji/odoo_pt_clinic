@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pt_session_pivot" model="ir.ui.view">
+        <field name="name">pt.session.pivot</field>
+        <field name="model">pt.session</field>
+        <field name="arch" type="xml">
+            <pivot string="تحليلات الجلسات | Session Analytics">
+                <field name="patient_id" type="row"/>
+                <field name="therapist_id" type="col"/>
+                <field name="duration_minutes" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_pt_session_reporting" model="ir.actions.act_window">
+        <field name="name">تحليلات الجلسات | Session Analytics</field>
+        <field name="res_model">pt.session</field>
+        <field name="view_mode">pivot,graph,list</field>
+    </record>
+
+    <record id="view_pt_appointment_graph" model="ir.ui.view">
+        <field name="name">pt.appointment.graph</field>
+        <field name="model">pt.appointment</field>
+        <field name="arch" type="xml">
+            <graph string="تحليلات المواعيد | Appointment Analytics" type="bar">
+                <field name="therapist_id"/>
+                <field name="status"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_pt_appointment_reporting" model="ir.actions.act_window">
+        <field name="name">تحليلات المواعيد | Appointment Analytics</field>
+        <field name="res_model">pt.appointment</field>
+        <field name="view_mode">graph,pivot,list</field>
+    </record>
+</odoo>
+

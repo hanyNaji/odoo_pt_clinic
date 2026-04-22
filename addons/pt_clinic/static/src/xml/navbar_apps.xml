@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="pt_clinic.NavBarPinnedAppsPanel" t-inherit="web.NavBar" t-inherit-mode="extension" owl="1">
+        <xpath expr="//nav[contains(@class, 'o_main_navbar')]" position="after">
+            <div t-if="!env.isSmall and !isScopedApp and menuService.getApps().length" class="o_pt_clinic_apps_panel">
+                <div class="o_pt_clinic_apps_panel_header">Apps</div>
+                <a
+                    t-foreach="menuService.getApps()"
+                    t-as="app"
+                    t-key="app.id"
+                    class="o_pt_clinic_apps_panel_link"
+                    t-att-class="{ 'active': menuService.getCurrentApp() === app }"
+                    t-att-href="getMenuItemHref(app)"
+                    t-att-data-menu-xmlid="app.xmlid"
+                    t-att-data-section="app.id"
+                >
+                    <t t-esc="app.name"/>
+                </a>
+            </div>
+        </xpath>
+    </t>
+</templates>

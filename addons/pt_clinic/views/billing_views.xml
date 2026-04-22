@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pt_package_tree" model="ir.ui.view">
+        <field name="name">pt.treatment.package.tree</field>
+        <field name="model">pt.treatment.package</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="branch_id"/>
+                <field name="total_sessions"/>
+                <field name="used_sessions"/>
+                <field name="remaining_sessions"/>
+                <field name="final_price"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pt_package_form" model="ir.ui.view">
+        <field name="name">pt.treatment.package.form</field>
+        <field name="model">pt.treatment.package</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="patient_id"/>
+                            <field name="clinic_company_id" groups="base.group_multi_company"/>
+                            <field name="branch_id"/>
+                            <field name="company_id"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <group>
+                            <field name="total_sessions"/>
+                            <field name="billing_mode"/>
+                            <field name="used_sessions" readonly="1"/>
+                            <field name="remaining_sessions" readonly="1"/>
+                            <field name="base_price"/>
+                            <field name="final_price" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="discount_type"/>
+                        <field name="discount_value"/>
+                    </group>
+                    <field name="usage_ids" readonly="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pt_package" model="ir.actions.act_window">
+        <field name="name">باقات العلاج | Treatment Packages</field>
+        <field name="res_model">pt.treatment.package</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_pt_discount_offer_tree" model="ir.ui.view">
+        <field name="name">pt.discount.offer.tree</field>
+        <field name="model">pt.discount.offer</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="branch_id"/>
+                <field name="offer_type"/>
+                <field name="value"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_pt_discount_offer" model="ir.actions.act_window">
+        <field name="name">عروض الخصم | Discount Offers</field>
+        <field name="res_model">pt.discount.offer</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_pt_company_contract_tree" model="ir.ui.view">
+        <field name="name">pt.company.contract.tree</field>
+        <field name="model">pt.company.contract</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="branch_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pt_company_contract_form" model="ir.ui.view">
+        <field name="name">pt.company.contract.form</field>
+        <field name="model">pt.company.contract</field>
+        <field name="arch" type="xml">
+            <form string="عقد شركة | Company Contract">
+                <header>
+                    <button string="تفعيل | Activate" type="object" name="action_activate" class="btn-primary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,expired"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="clinic_company_id" groups="base.group_multi_company"/>
+                        <field name="branch_id"/>
+                        <field name="partner_id"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                    <field name="line_ids">
+                        <list editable="bottom">
+                            <field name="product_id"/>
+                            <field name="fixed_price"/>
+                            <field name="discount_percent"/>
+                            <field name="service_notes"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pt_company_contract" model="ir.actions.act_window">
+        <field name="name">عقود الشركات | Company Contracts</field>
+        <field name="res_model">pt.company.contract</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_pt_session_invoicing_wizard_form" model="ir.ui.view">
+        <field name="name">pt.session.invoicing.wizard.form</field>
+        <field name="model">pt.session.invoicing.wizard</field>
+        <field name="arch" type="xml">
+            <form string="إنشاء فاتورة جلسات | Create Session Invoice">
+                <group>
+                    <field name="patient_id"/>
+                    <field name="session_ids" widget="many2many_tags"/>
+                    <field name="package_id"/>
+                    <field name="offer_id"/>
+                    <field name="product_id"/>
+                    <field name="unit_price"/>
+                    <field name="discount_type"/>
+                    <field name="discount_value"/>
+                </group>
+                <footer>
+                    <button name="action_create_invoice" string="إنشاء الفاتورة | Create Invoice" type="object" class="btn-primary"/>
+                    <button string="إلغاء | Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pt_session_invoicing_wizard" model="ir.actions.act_window">
+        <field name="name">فاتورة الجلسات | Session Invoice</field>
+        <field name="res_model">pt.session.invoicing.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
+

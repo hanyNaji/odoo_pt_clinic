@@ -1,0 +1,89 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pt_clinic 18.0.5.0.0\n"
+"POT-Creation-Date: 2026-04-18 00:00+0000\n"
+"PO-Revision-Date: 2026-04-18 00:00+0000\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: pt_clinic
+msgid "PT Clinic"
+msgstr "عيادة العلاج الطبيعي"
+
+#. module: pt_clinic
+msgid "Patients"
+msgstr "المرضى"
+
+#. module: pt_clinic
+msgid "Appointments"
+msgstr "المواعيد"
+
+#. module: pt_clinic
+msgid "Clinical"
+msgstr "الملف العلاجي"
+
+#. module: pt_clinic
+msgid "Assessments"
+msgstr "التقييمات"
+
+#. module: pt_clinic
+msgid "Treatment Plans"
+msgstr "خطط العلاج"
+
+#. module: pt_clinic
+msgid "Sessions"
+msgstr "الجلسات"
+
+#. module: pt_clinic
+msgid "Billing"
+msgstr "الفوترة"
+
+#. module: pt_clinic
+msgid "Packages"
+msgstr "الباقات"
+
+#. module: pt_clinic
+msgid "Treatment Packages"
+msgstr "باقات العلاج"
+
+#. module: pt_clinic
+msgid "Discount Offers"
+msgstr "عروض الخصم"
+
+#. module: pt_clinic
+msgid "Company Contracts"
+msgstr "عقود الشركات"
+
+#. module: pt_clinic
+msgid "Create Invoice"
+msgstr "إنشاء فاتورة"
+
+#. module: pt_clinic
+msgid "Reports"
+msgstr "التقارير"
+
+#. module: pt_clinic
+msgid "Configuration"
+msgstr "الإعدادات"
+
+#. module: pt_clinic
+msgid "Branches"
+msgstr "الفروع"
+
+#. module: pt_clinic
+msgid "Main Branch"
+msgstr "الفرع الرئيسي"
+
+#. module: pt_clinic
+msgid "PT Intake Form"
+msgstr "استمارة الاستقبال"
+
+#. module: pt_clinic
+msgid "PT Consent Form"
+msgstr "نموذج الموافقة"
+
+#. module: pt_clinic
+msgid "PT Branded Invoice"
+msgstr "فاتورة العيادة"

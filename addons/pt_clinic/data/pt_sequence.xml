@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_pt_patient" model="ir.sequence">
+        <field name="name">PT Patient</field>
+        <field name="code">pt.patient</field>
+        <field name="prefix">PTP%(y)s</field>
+        <field name="padding">4</field>
+    </record>
+</odoo>
+

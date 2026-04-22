@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_pt_patient_intake_document">
+        <t t-call="web.external_layout">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="text-center mb-3">
+                        <h2 t-esc="o.clinic_company_id.name or 'وقاية'"/>
+                        <h3>استمارة استقبال مريض</h3>
+                        <p t-if="o.branch_id"><span t-field="o.branch_id"/></p>
+                    </div>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>اسم المريض</th>
+                                <td><span t-field="o.name"/></td>
+                                <th>كود الملف</th>
+                                <td><span t-field="o.code"/></td>
+                            </tr>
+                            <tr>
+                                <th>الرقم القومي</th>
+                                <td><span t-field="o.national_id"/></td>
+                                <th>الهاتف</th>
+                                <td><span t-field="o.phone"/></td>
+                            </tr>
+                            <tr>
+                                <th>واتساب</th>
+                                <td><span t-field="o.whatsapp"/></td>
+                                <th>تاريخ الميلاد</th>
+                                <td><span t-field="o.birth_date"/></td>
+                            </tr>
+                            <tr>
+                                <th>جهة العمل</th>
+                                <td><span t-field="o.company_id"/></td>
+                                <th>الفرع</th>
+                                <td><span t-field="o.branch_id"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h4>التاريخ المرضي</h4>
+                    <p t-field="o.medical_history"/>
+                    <h4>الحساسية والملاحظات الطبية</h4>
+                    <p t-field="o.allergy_notes"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_pt_patient_intake" model="ir.actions.report">
+        <field name="name">PT Intake Form</field>
+        <field name="model">pt.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pt_clinic.report_pt_patient_intake_document</field>
+        <field name="report_file">pt_clinic.report_pt_patient_intake_document</field>
+        <field name="binding_model_id" ref="model_pt_patient"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'PT Intake - %s' % (object.name)</field>
+    </record>
+
+    <template id="report_pt_patient_consent_document">
+        <t t-call="web.external_layout">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="text-center mb-3">
+                        <h2 t-esc="o.clinic_company_id.name or 'وقاية'"/>
+                        <h3>نموذج موافقة على العلاج الطبيعي</h3>
+                    </div>
+                    <p>
+                        أقر أنا
+                        <strong><span t-field="o.name"/></strong>
+                        بأنني وافقت على تلقي خدمات العلاج الطبيعي بعد شرح الخطة العلاجية والفوائد المتوقعة
+                        والمخاطر المحتملة.
+                    </p>
+                    <p><strong>الرقم القومي:</strong> <span t-field="o.national_id"/></p>
+                    <p><strong>الفرع:</strong> <span t-field="o.branch_id"/></p>
+                    <br/>
+                    <p>توقيع المريض: __________________________</p>
+                    <p>توقيع الأخصائي: ________________________</p>
+                    <p>التاريخ: ____________________</p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_pt_patient_consent" model="ir.actions.report">
+        <field name="name">PT Consent Form</field>
+        <field name="model">pt.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pt_clinic.report_pt_patient_consent_document</field>
+        <field name="report_file">pt_clinic.report_pt_patient_consent_document</field>
+        <field name="binding_model_id" ref="model_pt_patient"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'PT Consent - %s' % (object.name)</field>
+    </record>
+
+    <template id="report_pt_invoice_document">
+        <t t-call="web.external_layout">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="text-center mb-3">
+                        <h2 t-esc="o.company_id.name or 'وقاية'"/>
+                        <h3>فاتورة جلسات علاج طبيعي</h3>
+                    </div>
+                    <p><strong>رقم الفاتورة:</strong> <span t-field="o.name"/></p>
+                    <p><strong>التاريخ:</strong> <span t-field="o.invoice_date"/></p>
+                    <p><strong>العميل:</strong> <span t-field="o.partner_id"/></p>
+                    <table class="table table-sm table-bordered mt16">
+                        <thead>
+                            <tr>
+                                <th>الوصف</th>
+                                <th>الكمية</th>
+                                <th>سعر الوحدة</th>
+                                <th>الإجمالي</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.invoice_line_ids" t-as="line">
+                                <td><span t-field="line.name"/></td>
+                                <td><span t-field="line.quantity"/></td>
+                                <td><span t-field="line.price_unit"/></td>
+                                <td><span t-field="line.price_subtotal"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="text-end"><strong>الإجمالي الكلي:</strong> <span t-field="o.amount_total"/></p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_pt_invoice" model="ir.actions.report">
+        <field name="name">PT Branded Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pt_clinic.report_pt_invoice_document</field>
+        <field name="report_file">pt_clinic.report_pt_invoice_document</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'PT Invoice - %s' % (object.name)</field>
+    </record>
+
+    <template id="report_pt_assessment_document">
+        <t t-call="web.external_layout">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="text-center mb-3">
+                        <h2>Physical Therapy Center</h2>
+                        <h3>Assessment - Whole Body (Physiotherapy)</h3>
+                    </div>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>Patient Name</th>
+                                <td><span t-field="o.patient_id.name"/></td>
+                                <th>Date</th>
+                                <td><span t-field="o.assessment_date"/></td>
+                            </tr>
+                            <tr>
+                                <th>MRN / ID</th>
+                                <td><span t-esc="o.patient_code"/></td>
+                                <th>Age</th>
+                                <td><span t-esc="o.patient_age"/></td>
+                            </tr>
+                            <tr>
+                                <th>Gender</th>
+                                <td><span t-field="o.patient_gender"/></td>
+                                <th>Therapist</th>
+                                <td><span t-field="o.therapist_id"/></td>
+                            </tr>
+                            <tr>
+                                <th>Primary Physician</th>
+                                <td colspan="3"><span t-esc="o.primary_physician"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Chief Complaints:</strong> <span t-field="o.chief_complaints"/></p>
+                    <p><strong>Diagnosis:</strong> <span t-field="o.diagnosis"/></p>
+                    <p><strong>History of Present / Past Illness:</strong> <span t-field="o.history_present_illness"/></p>
+                    <p><strong>Onset:</strong> <span t-esc="o.onset"/> <strong class="ms-3">Course:</strong> <span t-esc="o.course"/></p>
+                    <p>
+                        <strong>Present Conditions:</strong>
+                        <t t-if="o.condition_diabetes"> Diabetes </t>
+                        <t t-if="o.condition_hypertension"> Hypertension </t>
+                        <t t-if="o.condition_infections"> Infections </t>
+                        <t t-if="o.condition_heart_disease"> Heart diseases </t>
+                        <t t-if="o.condition_osteoporosis"> Osteoporosis </t>
+                        <t t-if="o.condition_skin_disease"> Skin diseases </t>
+                        <t t-if="o.condition_convulsions"> Convulsions </t>
+                        <t t-if="o.condition_other"> / <span t-esc="o.condition_other"/></t>
+                    </p>
+                    <p><strong>Operations:</strong> <span t-field="o.operations_history"/></p>
+                    <p><strong>Allergies:</strong> <span t-field="o.allergies_history"/></p>
+                    <p>
+                        <strong>Investigations:</strong>
+                        <t t-if="o.investigation_mri"> MRI </t>
+                        <t t-if="o.investigation_ct"> CT </t>
+                        <t t-if="o.investigation_xray"> X-Ray </t>
+                        <t t-if="o.investigation_ultrasound"> Ultrasound </t>
+                        <t t-if="o.investigation_emg_ncs"> EMG/NCS </t>
+                    </p>
+                    <p><strong>Finding:</strong> <span t-field="o.finding"/></p>
+                    <p><strong>Additional Findings:</strong> <span t-field="o.findings"/></p>
+                    <p><strong>Red Flags / Precautions:</strong> <span t-field="o.red_flags"/></p>
+                    <p><strong>Functional Limitations:</strong> <span t-field="o.functional_limitations"/></p>
+                    <p><strong>Goals:</strong> <span t-field="o.goals_patient_therapist"/></p>
+                    <p><strong>Recommendations:</strong> <span t-field="o.recommendations"/></p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_pt_assessment" model="ir.actions.report">
+        <field name="name">PT Assessment Sheet</field>
+        <field name="model">pt.assessment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pt_clinic.report_pt_assessment_document</field>
+        <field name="report_file">pt_clinic.report_pt_assessment_document</field>
+        <field name="binding_model_id" ref="model_pt_assessment"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'PT Assessment - %s' % (object.patient_id.name)</field>
+    </record>
+
+    <template id="report_pt_treatment_plan_document">
+        <t t-call="web.external_layout">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="text-center mb-3">
+                        <h2>Physical Therapy Center</h2>
+                        <h3>Physiotherapy Care Plan</h3>
+                    </div>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>Patient Name</th>
+                                <td><span t-field="o.patient_id.name"/></td>
+                                <th>Gender</th>
+                                <td><span t-field="o.patient_gender"/></td>
+                            </tr>
+                            <tr>
+                                <th>Age</th>
+                                <td><span t-esc="o.patient_age"/></td>
+                                <th>PIN</th>
+                                <td><span t-esc="o.patient_pin"/></td>
+                            </tr>
+                            <tr>
+                                <th>Physiotherapist</th>
+                                <td><span t-field="o.therapist_id"/></td>
+                                <th>Date</th>
+                                <td><span t-field="o.plan_date"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h4>Findings Identified</h4>
+                    <p>
+                        <t t-if="o.finding_pain">Pain, </t>
+                        <t t-if="o.finding_restricted_rom">Restricted ROM, </t>
+                        <t t-if="o.finding_disturbed_balance">Disturbed balance, </t>
+                        <t t-if="o.finding_affected_functional_ability">Affected functional ability, </t>
+                        <t t-if="o.finding_disturbed_sensorimotor_control">Disturbed sensorimotor control, </t>
+                        <t t-if="o.finding_lack_coordination">Lack of coordination, </t>
+                        <t t-if="o.finding_muscle_weakness">Muscle weakness, </t>
+                        <t t-if="o.finding_muscle_spasm">Muscle spasm, </t>
+                        <t t-if="o.finding_lack_flexibility">Lack of flexibility, </t>
+                        <t t-if="o.finding_affected_locomotion">Affected locomotion ability, </t>
+                        <t t-if="o.finding_affected_posture">Affected posture, </t>
+                        <t t-if="o.finding_affected_foot_deformity">Affected foot deformity, </t>
+                        <t t-if="o.finding_edema">Edema</t>
+                        <t t-if="o.findings_other"> <span t-esc="o.findings_other"/></t>
+                    </p>
+                    <h4>Planned Goals</h4>
+                    <p><span t-field="o.goals"/></p>
+                    <h4>Modalities</h4>
+                    <p><span t-field="o.interventions"/></p>
+                    <p>
+                        <strong>Patient Education:</strong> <span t-esc="'Yes' if o.patient_education_given else 'No'"/>
+                        <strong class="ms-3">Home Exercise Plan:</strong> <span t-esc="'Yes' if o.home_exercise_plan else 'No'"/>
+                    </p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_pt_treatment_plan" model="ir.actions.report">
+        <field name="name">PT Care Plan Sheet</field>
+        <field name="model">pt.treatment.plan</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pt_clinic.report_pt_treatment_plan_document</field>
+        <field name="report_file">pt_clinic.report_pt_treatment_plan_document</field>
+        <field name="binding_model_id" ref="model_pt_treatment_plan"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'PT Care Plan - %s' % (object.patient_id.name)</field>
+    </record>
+
+    <template id="report_pt_therapy_sheet_document">
+        <t t-call="web.external_layout">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="text-center mb-3">
+                        <h2>PHYSICAL THERAPY SHEET</h2>
+                    </div>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>Case Type</th>
+                                <td><span t-field="o.case_type"/></td>
+                                <th>Name</th>
+                                <td><span t-field="o.patient_id.name"/></td>
+                                <th>Age</th>
+                                <td><span t-esc="o.patient_age"/></td>
+                                <th>Job</th>
+                                <td><span t-esc="o.patient_job"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr><th>Complain</th><td><span t-field="o.complaint"/></td></tr>
+                            <tr><th>Diagnosis</th><td><span t-field="o.diagnosis"/></td></tr>
+                            <tr><th>Treatment Program</th><td><span t-field="o.treatment_program"/></td></tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Case Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.line_ids" t-as="line">
+                                <td><span t-field="line.reference_code"/></td>
+                                <td><span t-field="line.line_date"/></td>
+                                <td><span t-field="line.case_name"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Signature:</strong> <span t-field="o.signature_name"/></p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_pt_therapy_sheet" model="ir.actions.report">
+        <field name="name">Physical Therapy Sheet</field>
+        <field name="model">pt.therapy.sheet</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pt_clinic.report_pt_therapy_sheet_document</field>
+        <field name="report_file">pt_clinic.report_pt_therapy_sheet_document</field>
+        <field name="binding_model_id" ref="model_pt_therapy_sheet"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'PT Sheet - %s' % (object.patient_id.name)</field>
+    </record>
+</odoo>

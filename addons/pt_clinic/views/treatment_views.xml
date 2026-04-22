@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pt_therapy_sheet_tree" model="ir.ui.view">
+        <field name="name">pt.therapy.sheet.tree</field>
+        <field name="model">pt.therapy.sheet</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="sheet_date"/>
+                <field name="case_type"/>
+                <field name="therapist_id"/>
+                <field name="branch_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pt_therapy_sheet_form" model="ir.ui.view">
+        <field name="name">pt.therapy.sheet.form</field>
+        <field name="model">pt.therapy.sheet</field>
+        <field name="arch" type="xml">
+            <form string="Physical Therapy Sheet">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="patient_id"/>
+                            <field name="patient_age" readonly="1"/>
+                            <field name="patient_job" readonly="1"/>
+                            <field name="case_type" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="clinic_company_id" groups="base.group_multi_company"/>
+                            <field name="branch_id"/>
+                            <field name="therapist_id"/>
+                            <field name="sheet_date"/>
+                            <field name="signature_name"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="complaint"/>
+                        <field name="diagnosis"/>
+                        <field name="treatment_program"/>
+                    </group>
+                    <group string="Daily Case Log">
+                        <field name="line_ids">
+                            <list editable="bottom">
+                                <field name="reference_code"/>
+                                <field name="line_date"/>
+                                <field name="case_name"/>
+                                <field name="session_id"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pt_therapy_sheet" model="ir.actions.act_window">
+        <field name="name">Physical Therapy Sheets</field>
+        <field name="res_model">pt.therapy.sheet</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_pt_assessment_tree" model="ir.ui.view">
+        <field name="name">pt.assessment.tree</field>
+        <field name="model">pt.assessment</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="assessment_date"/>
+                <field name="therapist_id"/>
+                <field name="pain_score"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pt_assessment_form" model="ir.ui.view">
+        <field name="name">pt.assessment.form</field>
+        <field name="model">pt.assessment</field>
+        <field name="arch" type="xml">
+            <form string="Assessment - Whole Body (Physiotherapy)">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="patient_id"/>
+                            <field name="patient_code" readonly="1"/>
+                            <field name="patient_gender" readonly="1"/>
+                            <field name="primary_physician" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="assessment_date"/>
+                            <field name="patient_age" readonly="1"/>
+                            <field name="therapist_id"/>
+                            <field name="branch_id"/>
+                            <field name="clinic_company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="chief_complaints"/>
+                        <field name="diagnosis"/>
+                        <field name="history_present_illness"/>
+                    </group>
+                    <group>
+                        <group string="Onset / Course">
+                            <field name="onset"/>
+                            <field name="course"/>
+                            <field name="pain_score"/>
+                        </group>
+                        <group string="Present Conditions">
+                            <field name="condition_diabetes"/>
+                            <field name="condition_hypertension"/>
+                            <field name="condition_infections"/>
+                            <field name="condition_heart_disease"/>
+                            <field name="condition_osteoporosis"/>
+                            <field name="condition_skin_disease"/>
+                            <field name="condition_convulsions"/>
+                            <field name="condition_other"/>
+                            <field name="operations_history"/>
+                            <field name="allergies_history"/>
+                        </group>
+                        <group string="Investigations">
+                            <field name="investigation_mri"/>
+                            <field name="investigation_ct"/>
+                            <field name="investigation_xray"/>
+                            <field name="investigation_ultrasound"/>
+                            <field name="investigation_emg_ncs"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="finding"/>
+                        <field name="findings"/>
+                        <field name="red_flags"/>
+                        <field name="functional_limitations"/>
+                        <field name="goals_patient_therapist"/>
+                        <field name="recommendations"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pt_assessment" model="ir.actions.act_window">
+        <field name="name">التقييمات | Assessments</field>
+        <field name="res_model">pt.assessment</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_pt_treatment_plan_tree" model="ir.ui.view">
+        <field name="name">pt.treatment.plan.tree</field>
+        <field name="model">pt.treatment.plan</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="plan_date"/>
+                <field name="therapist_id"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pt_treatment_plan_form" model="ir.ui.view">
+        <field name="name">pt.treatment.plan.form</field>
+        <field name="model">pt.treatment.plan</field>
+        <field name="arch" type="xml">
+            <form string="Physiotherapy Care Plan">
+                <header>
+                    <button string="تفعيل | Activate" type="object" name="action_activate" class="btn-primary"/>
+                    <button string="إكمال | Complete" type="object" name="action_complete"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,active,completed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="patient_id"/>
+                            <field name="patient_gender" readonly="1"/>
+                            <field name="patient_age" readonly="1"/>
+                            <field name="patient_pin" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="therapist_id"/>
+                            <field name="plan_date"/>
+                            <field name="plan_time"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                    <group col="3">
+                        <group string="Findings Identified">
+                            <field name="finding_pain"/>
+                            <field name="finding_restricted_rom"/>
+                            <field name="finding_disturbed_balance"/>
+                            <field name="finding_affected_functional_ability"/>
+                            <field name="finding_disturbed_sensorimotor_control"/>
+                            <field name="finding_lack_coordination"/>
+                            <field name="finding_muscle_weakness"/>
+                            <field name="finding_muscle_spasm"/>
+                            <field name="finding_lack_flexibility"/>
+                            <field name="finding_affected_locomotion"/>
+                            <field name="finding_affected_posture"/>
+                            <field name="finding_affected_foot_deformity"/>
+                            <field name="finding_edema"/>
+                            <field name="findings_other"/>
+                        </group>
+                        <group string="Planned Goals">
+                            <field name="goal_reduce_edema"/>
+                            <field name="goal_reduce_pain"/>
+                            <field name="goal_reduce_stiffness"/>
+                            <field name="goal_reduce_muscle_spasm"/>
+                            <field name="goal_reduce_disability"/>
+                            <field name="goal_improve_adl"/>
+                            <field name="goal_improve_balance"/>
+                            <field name="goal_improve_functional_ability"/>
+                            <field name="goal_improve_coordination"/>
+                            <field name="goal_improve_gait"/>
+                            <field name="goal_improve_circulation"/>
+                            <field name="goal_improve_muscle_power"/>
+                            <field name="goal_improve_rom"/>
+                            <field name="goal_improve_weight_bearing"/>
+                            <field name="goal_prevent_deformities"/>
+                            <field name="goal_prevent_contracture"/>
+                            <field name="goal_prevent_muscle_wasting"/>
+                            <field name="goals_other"/>
+                        </group>
+                        <group string="Modalities">
+                            <field name="modality_active_assisted_rom"/>
+                            <field name="modality_passive_rom"/>
+                            <field name="modality_isometric"/>
+                            <field name="modality_stretching"/>
+                            <field name="modality_balance_exercises"/>
+                            <field name="modality_postural_correction"/>
+                            <field name="modality_mulligan"/>
+                            <field name="modality_mckenzie"/>
+                            <field name="modality_stabilization"/>
+                            <field name="modality_mobilization"/>
+                            <field name="modality_myofascial_release"/>
+                            <field name="modality_deep_friction"/>
+                            <field name="modality_plyometric"/>
+                            <field name="modality_open_chain"/>
+                            <field name="modality_closed_chain"/>
+                            <field name="modality_aerobic"/>
+                            <field name="modality_resistance_band"/>
+                            <field name="patient_education_given"/>
+                            <field name="home_exercise_plan"/>
+                            <field name="modality_tens"/>
+                            <field name="modality_ultrasound"/>
+                            <field name="modality_hot"/>
+                            <field name="modality_laser"/>
+                            <field name="modality_k_tape"/>
+                            <field name="modality_pneumatic"/>
+                            <field name="modality_leg_press"/>
+                            <field name="modality_leg_curl"/>
+                            <field name="modalities_other"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="goals"/>
+                        <field name="interventions"/>
+                    </group>
+                    <group string="Sessions">
+                        <field name="session_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pt_treatment_plan" model="ir.actions.act_window">
+        <field name="name">خطط العلاج | Treatment Plans</field>
+        <field name="res_model">pt.treatment.plan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_pt_session_tree" model="ir.ui.view">
+        <field name="name">pt.session.tree</field>
+        <field name="model">pt.session</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="therapist_id"/>
+                <field name="therapy_sheet_id"/>
+                <field name="session_datetime"/>
+                <field name="duration_minutes"/>
+                <field name="billed"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pt_session_form" model="ir.ui.view">
+        <field name="name">pt.session.form</field>
+        <field name="model">pt.session</field>
+        <field name="arch" type="xml">
+            <form string="الجلسة | Session">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="patient_id"/>
+                        <field name="clinic_company_id" groups="base.group_multi_company"/>
+                        <field name="branch_id"/>
+                        <field name="therapist_id"/>
+                        <field name="session_datetime"/>
+                        <field name="duration_minutes"/>
+                        <field name="pain_before"/>
+                        <field name="pain_after"/>
+                        <field name="appointment_id"/>
+                        <field name="treatment_plan_id"/>
+                        <field name="therapy_sheet_id"/>
+                        <field name="package_id"/>
+                        <field name="billed"/>
+                    </group>
+                    <notebook>
+                        <page string="SOAP Notes">
+                            <field name="subjective_notes"/>
+                            <field name="objective_notes"/>
+                            <field name="assessment_notes"/>
+                            <field name="plan_notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pt_session" model="ir.actions.act_window">
+        <field name="name">الجلسات | Sessions</field>
+        <field name="res_model">pt.session</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
