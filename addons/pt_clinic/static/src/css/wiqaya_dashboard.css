@@ -1,88 +1,154 @@
+/* Wiqaya Physiotherapy backend UX layer
+   Goals: faster perceived navigation, mobile-first touch targets, calmer clinic-first dashboard. */
+
+:root {
+    --wiqaya-primary: #7864a3;
+    --wiqaya-primary-dark: #4f3e77;
+    --wiqaya-primary-soft: #f1edf8;
+    --wiqaya-accent: #16a085;
+    --wiqaya-bg: #f6f7fb;
+    --wiqaya-card: #ffffff;
+    --wiqaya-border: rgba(120, 100, 163, 0.16);
+    --wiqaya-text: #17212b;
+    --wiqaya-muted: #667085;
+    --wiqaya-shadow: 0 14px 36px rgba(16, 24, 40, 0.08);
+    --wiqaya-radius-lg: 24px;
+    --wiqaya-radius-md: 18px;
+}
+
 .o_main_navbar {
     position: sticky;
     top: 0;
     z-index: 30;
+    box-shadow: 0 1px 0 rgba(16, 24, 40, 0.08);
 }
 
 .o_main_navbar .o_menu_sections {
     flex-grow: 1;
 }
 
-@media (min-width: 992px) {
+/* Desktop quick app switcher: only on wide screens so it never steals mobile/tablet space. */
+@media (min-width: 1200px) {
     .o_main_navbar .o_navbar_apps_menu {
         display: none !important;
     }
 
-    .o_navbar {
-        position: relative;
-    }
-
     .o_action_manager {
-        margin-right: 220px;
+        margin-right: 232px;
     }
 
     .o_pt_clinic_apps_panel {
         position: fixed;
-        top: calc(var(--o-navbar-height) + 6px);
-        right: 10px;
+        top: calc(var(--o-navbar-height) + 10px);
+        right: 12px;
         z-index: 29;
         display: flex;
         flex-direction: column;
-        gap: 6px;
-        width: 190px;
-        max-height: calc(100vh - var(--o-navbar-height) - 16px);
-        padding: 12px 10px 14px;
+        gap: 8px;
+        width: 204px;
+        max-height: calc(100vh - var(--o-navbar-height) - 24px);
+        padding: 14px 12px 16px;
         overflow-y: auto;
-        border: 1px solid rgba(120, 100, 163, 0.16);
-        border-radius: 22px;
-        background: #fff;
-        box-shadow: 0 12px 30px rgba(16, 24, 40, 0.10);
+        border: 1px solid var(--wiqaya-border);
+        border-radius: var(--wiqaya-radius-lg);
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: var(--wiqaya-shadow);
+        backdrop-filter: blur(10px);
     }
 
     .o_pt_clinic_apps_panel_header {
         padding: 0 10px 4px;
-        font-size: 12px;
-        font-weight: 700;
-        color: #6b5a8e;
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--wiqaya-primary-dark);
         text-transform: uppercase;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.07em;
     }
 
     .o_pt_clinic_apps_panel_link {
         display: flex;
         align-items: center;
-        min-height: 48px;
-        padding: 0 16px;
+        min-height: 46px;
+        padding: 0 15px;
+        border: 1px solid transparent;
         border-radius: 16px;
-        color: #4b5565;
+        color: #344054;
         text-decoration: none;
         white-space: nowrap;
-        background: #f1edf8;
-        font-size: 15px;
+        background: var(--wiqaya-primary-soft);
+        font-size: 14px;
+        font-weight: 650;
+        transition: transform 120ms ease, background 120ms ease, color 120ms ease;
     }
 
     .o_pt_clinic_apps_panel_link:hover {
-        color: #2a1f42;
-        background: #e7dff5;
+        transform: translateX(-2px);
+        color: var(--wiqaya-primary-dark);
+        background: #e8e0f5;
     }
 
     .o_pt_clinic_apps_panel_link.active {
         color: #ffffff;
-        background: #7864a3;
-        font-weight: 700;
+        background: linear-gradient(135deg, var(--wiqaya-primary), var(--wiqaya-primary-dark));
+        box-shadow: 0 10px 20px rgba(120, 100, 163, 0.22);
     }
 }
 
-.o_action_manager .o_form_view.o_pt_clinic_dashboard_form {
-    background: #f5f7fa;
+@media (max-width: 1199.98px) {
+    .o_pt_clinic_apps_panel {
+        display: none !important;
+    }
+
+    .o_action_manager {
+        margin-right: 0 !important;
+    }
 }
 
+/* Global backend comfort improvements for the clinic screens. */
+.o_action_manager .o_form_view.o_pt_clinic_dashboard_form,
+.o_action_manager .o_content {
+    background: var(--wiqaya-bg);
+}
+
+.o_form_view .o_form_sheet_bg > .o_form_sheet {
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(16, 24, 40, 0.05);
+}
+
+.o_list_renderer .o_list_table {
+    --table-border-color: rgba(120, 100, 163, 0.12);
+}
+
+.o_list_renderer .o_list_table thead th {
+    background: #fbfaff;
+    color: #344054;
+    font-weight: 800;
+}
+
+.o_list_renderer .o_list_table tbody tr:hover {
+    background: #fbfaff;
+}
+
+.o_cp_buttons .btn,
+.o_control_panel .btn,
+.o_form_button_save,
+.o_form_button_cancel {
+    border-radius: 999px !important;
+    min-height: 36px;
+    font-weight: 700;
+}
+
+.o_searchview {
+    border-radius: 999px !important;
+}
+
+/* Dashboard */
 .o_pt_clinic_dashboard_form .o_form_sheet_bg {
     background: transparent;
 }
 
 .o_pt_clinic_dashboard_form .o_pt_clinic_dashboard_sheet {
-    max-width: 1240px;
+    max-width: 1280px;
     border: 0;
     box-shadow: none;
     background: transparent;
@@ -90,118 +156,300 @@
 }
 
 .o_pt_clinic_dashboard {
-    color: #243447;
+    color: var(--wiqaya-text);
 }
 
 .o_pt_clinic_dashboard_header {
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-bottom: 20px;
-    padding: 20px 24px;
-    background: #ffffff;
-    border: 1px solid #dfe5ec;
-    border-radius: 16px;
+    margin-bottom: 18px;
+    padding: 26px;
+    background:
+        radial-gradient(circle at top left, rgba(120, 100, 163, 0.18), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #fbf9ff 52%, #f0f7f5 100%);
+    border: 1px solid var(--wiqaya-border);
+    border-radius: 28px;
+    box-shadow: var(--wiqaya-shadow);
+}
+
+.o_pt_clinic_dashboard_header::after {
+    content: "";
+    position: absolute;
+    inset-inline-end: -60px;
+    top: -80px;
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background: rgba(22, 160, 133, 0.10);
+    pointer-events: none;
 }
 
 .o_pt_clinic_dashboard_logo {
-    width: 72px;
-    height: 72px;
+    width: 78px;
+    height: 78px;
     object-fit: contain;
     flex: 0 0 auto;
+    border-radius: 22px;
+    background: #ffffff;
+    padding: 10px;
+    box-shadow: 0 10px 26px rgba(16, 24, 40, 0.10);
 }
 
 .o_pt_clinic_dashboard_intro h1 {
-    margin: 0 0 6px;
-    font-size: 30px;
-    font-weight: 700;
-    color: #17212b;
+    margin: 0 0 8px;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.1;
+    font-weight: 900;
+    color: var(--wiqaya-text);
 }
 
 .o_pt_clinic_dashboard_intro p {
+    max-width: 760px;
     margin: 0;
-    font-size: 15px;
-    color: #5d6b79;
+    font-size: 16px;
+    color: var(--wiqaya-muted);
+    line-height: 1.7;
 }
 
 .o_pt_clinic_navbar {
     position: sticky;
-    top: 12px;
+    top: calc(var(--o-navbar-height, 46px) + 8px);
     z-index: 20;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 20px;
-    padding: 14px;
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid #d8e0e8;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
-    backdrop-filter: blur(8px);
+    margin-bottom: 18px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid var(--wiqaya-border);
+    border-radius: 22px;
+    box-shadow: 0 10px 28px rgba(16, 24, 40, 0.07);
+    backdrop-filter: blur(10px);
 }
 
 .o_pt_clinic_nav_button {
+    min-height: 42px;
     border-radius: 999px;
-    padding-inline: 16px;
-    font-weight: 600;
+    padding-inline: 18px;
+    font-weight: 800;
+    box-shadow: none !important;
+}
+
+.o_pt_clinic_navbar .btn-primary {
+    border-color: var(--wiqaya-primary);
+    background: var(--wiqaya-primary);
+}
+
+.o_pt_clinic_navbar .btn-secondary {
+    border-color: transparent;
+    background: var(--wiqaya-primary-soft);
+    color: var(--wiqaya-primary-dark);
+}
+
+.o_pt_clinic_navbar .btn-secondary:hover {
+    background: #e8e0f5;
+    color: var(--wiqaya-primary-dark);
 }
 
 .o_pt_clinic_stats_grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 16px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
 }
 
 .o_pt_clinic_stat_card {
-    padding: 18px 20px;
-    background: #ffffff;
-    border: 1px solid #dfe5ec;
-    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    min-height: 122px;
+    padding: 18px 18px 16px;
+    background: var(--wiqaya-card);
+    border: 1px solid var(--wiqaya-border);
+    border-radius: 22px;
+    box-shadow: 0 10px 26px rgba(16, 24, 40, 0.05);
+}
+
+.o_pt_clinic_stat_card::after {
+    content: "";
+    position: absolute;
+    inset-inline-end: -22px;
+    bottom: -28px;
+    width: 82px;
+    height: 82px;
+    border-radius: 999px;
+    background: rgba(120, 100, 163, 0.08);
 }
 
 .o_pt_clinic_stat_label {
     display: block;
-    margin-bottom: 10px;
-    color: #627181;
+    margin-bottom: 12px;
+    color: var(--wiqaya-muted);
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 800;
 }
 
 .o_pt_clinic_stat_card .o_field_widget {
+    position: relative;
+    z-index: 1;
     display: inline-block;
-    font-size: 28px;
-    font-weight: 700;
-    color: #17212b;
+    font-size: clamp(26px, 5vw, 34px);
+    line-height: 1;
+    font-weight: 900;
+    color: var(--wiqaya-text);
 }
 
 .o_pt_clinic_dashboard_notes {
-    padding: 20px 24px;
-    background: #ffffff;
-    border: 1px solid #dfe5ec;
-    border-radius: 16px;
+    padding: 22px 24px;
+    background: var(--wiqaya-card);
+    border: 1px solid var(--wiqaya-border);
+    border-radius: 22px;
+    box-shadow: 0 10px 26px rgba(16, 24, 40, 0.05);
 }
 
 .o_pt_clinic_dashboard_notes h2 {
     margin: 0 0 8px;
-    font-size: 20px;
-    font-weight: 700;
-    color: #17212b;
+    font-size: 21px;
+    font-weight: 900;
+    color: var(--wiqaya-text);
 }
 
 .o_pt_clinic_dashboard_notes p {
     margin: 0;
-    color: #5d6b79;
-    line-height: 1.6;
+    color: var(--wiqaya-muted);
+    line-height: 1.7;
 }
 
+/* Mobile/tablet: make Odoo usable as a clinic app rather than a squeezed desktop page. */
 @media (max-width: 768px) {
+    .o_main_navbar {
+        min-height: 48px;
+    }
+
+    .o_control_panel {
+        gap: 8px;
+        padding: 10px 10px 8px !important;
+    }
+
+    .o_control_panel .o_cp_top,
+    .o_control_panel .o_cp_bottom {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .o_cp_buttons,
+    .o_cp_action_menus,
+    .o_cp_pager {
+        width: auto;
+    }
+
+    .o_cp_buttons .btn,
+    .o_control_panel .btn {
+        min-height: 40px;
+        padding-inline: 14px;
+    }
+
+    .o_searchview {
+        width: 100%;
+        min-height: 40px;
+    }
+
+    .o_pt_clinic_dashboard_form .o_pt_clinic_dashboard_sheet {
+        padding: 12px;
+    }
+
     .o_pt_clinic_dashboard_header {
-        flex-direction: column;
         align-items: flex-start;
+        gap: 14px;
+        padding: 20px;
+        border-radius: 24px;
+    }
+
+    .o_pt_clinic_dashboard_logo {
+        width: 62px;
+        height: 62px;
+        border-radius: 18px;
     }
 
     .o_pt_clinic_navbar {
-        top: 8px;
+        top: calc(var(--o-navbar-height, 46px) + 4px);
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 10px;
+        border-radius: 18px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .o_pt_clinic_navbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .o_pt_clinic_nav_button {
+        flex: 0 0 auto;
+        min-height: 44px;
+        padding-inline: 18px;
+    }
+
+    .o_pt_clinic_stats_grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .o_pt_clinic_stat_card {
+        min-height: 104px;
+        padding: 15px;
+        border-radius: 18px;
+    }
+
+    .o_pt_clinic_dashboard_notes {
+        padding: 18px;
+        border-radius: 18px;
+    }
+
+    .o_form_view .o_form_sheet_bg > .o_form_sheet {
+        margin: 8px;
+        padding: 16px !important;
+        max-width: none;
+        border-radius: 18px;
+    }
+
+    .o_group .o_td_label,
+    .o_group .o_wrap_field {
+        width: 100% !important;
+        display: block;
+    }
+
+    .o_field_widget input,
+    .o_field_widget textarea,
+    .o_field_widget select,
+    .o_input {
+        min-height: 42px;
+        font-size: 16px;
+    }
+
+    .o_list_renderer {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .o_list_renderer .o_list_table {
+        min-width: 720px;
+    }
+}
+
+@media (max-width: 480px) {
+    .o_pt_clinic_dashboard_header {
+        flex-direction: column;
+    }
+
+    .o_pt_clinic_stats_grid {
+        grid-template-columns: 1fr;
+    }
+
+    .o_pt_clinic_dashboard_intro p {
+        font-size: 14px;
     }
 }

@@ -4,23 +4,23 @@
         <field name="name">pt.clinic.dashboard.form</field>
         <field name="model">pt.clinic.dashboard</field>
         <field name="arch" type="xml">
-            <form create="0" edit="0" delete="0" string="وقاية" class="o_pt_clinic_dashboard_form">
+            <form create="0" edit="0" delete="0" string="Wiqaya" class="o_pt_clinic_dashboard_form">
                 <sheet class="o_pt_clinic_dashboard_sheet">
                     <div class="o_pt_clinic_dashboard">
                         <div class="o_pt_clinic_dashboard_header">
-                            <img class="o_pt_clinic_dashboard_logo" src="/pt_clinic/static/src/img/wiqaya_logo.png" alt="وقاية"/>
+                            <img class="o_pt_clinic_dashboard_logo" src="/pt_clinic/static/src/img/wiqaya_logo.png" alt="Wiqaya"/>
                             <div class="o_pt_clinic_dashboard_intro">
-                                <h1>وقاية</h1>
-                                <p>Physiotherapy clinic management with a simpler clinic-first home page.</p>
+                                <h1>Wiqaya</h1>
+                                <p>Modern physiotherapy operations hub for reception, therapists, billing, reminders, and management reports — optimized for fast daily work on desktop, tablet, and mobile.</p>
                             </div>
                         </div>
 
                         <div class="o_pt_clinic_navbar">
                             <button name="action_open_patients" type="object" class="btn btn-primary o_pt_clinic_nav_button">
-                                المرضى
+                                Patients
                             </button>
                             <button name="action_open_appointments" type="object" class="btn btn-primary o_pt_clinic_nav_button">
-                                المواعيد
+                                Appointments
                             </button>
                             <button
                                 name="action_open_assessments"
@@ -28,7 +28,7 @@
                                 class="btn btn-secondary o_pt_clinic_nav_button"
                                 groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager"
                             >
-                                التقييمات
+                                Assessments
                             </button>
                             <button
                                 name="action_open_treatment_plans"
@@ -36,7 +36,7 @@
                                 class="btn btn-secondary o_pt_clinic_nav_button"
                                 groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager"
                             >
-                                الخطط
+                                Treatment Plans
                             </button>
                             <button
                                 name="action_open_sessions"
@@ -44,7 +44,7 @@
                                 class="btn btn-secondary o_pt_clinic_nav_button"
                                 groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager"
                             >
-                                الجلسات
+                                Sessions
                             </button>
                             <button
                                 name="action_open_packages"
@@ -52,7 +52,7 @@
                                 class="btn btn-secondary o_pt_clinic_nav_button"
                                 groups="pt_clinic.group_pt_clinic_billing,pt_clinic.group_pt_clinic_manager"
                             >
-                                الباقات
+                                Packages
                             </button>
                             <button
                                 name="action_open_billing"
@@ -60,7 +60,7 @@
                                 class="btn btn-secondary o_pt_clinic_nav_button"
                                 groups="pt_clinic.group_pt_clinic_billing,pt_clinic.group_pt_clinic_manager"
                             >
-                                الفوترة
+                                Billing
                             </button>
                             <button
                                 name="action_open_reports"
@@ -68,7 +68,7 @@
                                 class="btn btn-secondary o_pt_clinic_nav_button"
                                 groups="pt_clinic.group_pt_clinic_billing,pt_clinic.group_pt_clinic_manager"
                             >
-                                التقارير
+                                Reports
                             </button>
                             <button
                                 name="action_open_settings"
@@ -76,44 +76,44 @@
                                 class="btn btn-secondary o_pt_clinic_nav_button"
                                 groups="pt_clinic.group_pt_clinic_manager"
                             >
-                                الإعدادات
+                                Settings
                             </button>
                         </div>
 
                         <div class="o_pt_clinic_stats_grid">
                             <div class="o_pt_clinic_stat_card">
-                                <span class="o_pt_clinic_stat_label">المرضى</span>
+                                <span class="o_pt_clinic_stat_label">Patients</span>
                                 <field name="patient_count" readonly="1"/>
                             </div>
                             <div class="o_pt_clinic_stat_card">
-                                <span class="o_pt_clinic_stat_label">مواعيد اليوم</span>
+                                <span class="o_pt_clinic_stat_label">Today's Appointments</span>
                                 <field name="appointment_today_count" readonly="1"/>
                             </div>
                             <div class="o_pt_clinic_stat_card">
-                                <span class="o_pt_clinic_stat_label">التقييمات</span>
+                                <span class="o_pt_clinic_stat_label">Assessments</span>
                                 <field name="assessment_count" readonly="1"/>
                             </div>
                             <div class="o_pt_clinic_stat_card">
-                                <span class="o_pt_clinic_stat_label">الخطط النشطة</span>
+                                <span class="o_pt_clinic_stat_label">Active Plans</span>
                                 <field name="active_plan_count" readonly="1"/>
                             </div>
                             <div class="o_pt_clinic_stat_card">
-                                <span class="o_pt_clinic_stat_label">الجلسات</span>
+                                <span class="o_pt_clinic_stat_label">Sessions</span>
                                 <field name="session_count" readonly="1"/>
                             </div>
                             <div class="o_pt_clinic_stat_card">
-                                <span class="o_pt_clinic_stat_label">الباقات</span>
+                                <span class="o_pt_clinic_stat_label">Packages</span>
                                 <field name="package_count" readonly="1"/>
                             </div>
                             <div class="o_pt_clinic_stat_card">
-                                <span class="o_pt_clinic_stat_label">التذكيرات المعلقة</span>
+                                <span class="o_pt_clinic_stat_label">Pending Reminders</span>
                                 <field name="reminder_pending_count" readonly="1"/>
                             </div>
                         </div>
 
                         <div class="o_pt_clinic_dashboard_notes">
-                            <h2>وصول سريع</h2>
-                            <p>استخدم شريط التنقل الثابت بالأعلى للتنقل السريع بين المرضى والمواعيد والعلاج والفوترة والتقارير.</p>
+                            <h2>Quick Access</h2>
+                            <p>Start with patients and appointments from the main buttons, then use treatment plans, sessions, billing, and reports according to each user role. On mobile, swipe the shortcut bar left and right to reach all sections quickly.</p>
                         </div>
                     </div>
                 </sheet>
@@ -122,7 +122,7 @@
     </record>
 
     <record id="action_pt_clinic_dashboard" model="ir.actions.act_window">
-        <field name="name">وقاية</field>
+        <field name="name">Wiqaya</field>
         <field name="res_model">pt.clinic.dashboard</field>
         <field name="res_id" ref="pt_dashboard_main"/>
         <field name="view_mode">form</field>

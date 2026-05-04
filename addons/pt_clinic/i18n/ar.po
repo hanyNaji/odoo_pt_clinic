@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: pt_clinic 18.0.5.0.0\n"
-"POT-Creation-Date: 2026-04-18 00:00+0000\n"
-"PO-Revision-Date: 2026-04-18 00:00+0000\n"
+"Project-Id-Version: pt_clinic 19.0.5.0.0\n"
+"POT-Creation-Date: 2026-05-04 00:00+0000\n"
+"PO-Revision-Date: 2026-05-04 00:00+0000\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13,6 +13,10 @@ msgid "PT Clinic"
 msgstr "عيادة العلاج الطبيعي"
 
 #. module: pt_clinic
+msgid "Wiqaya"
+msgstr "وقاية"
+
+#. module: pt_clinic
 msgid "Patients"
 msgstr "المرضى"
 
@@ -21,8 +25,16 @@ msgid "Appointments"
 msgstr "المواعيد"
 
 #. module: pt_clinic
+msgid "Today's Appointments"
+msgstr "مواعيد اليوم"
+
+#. module: pt_clinic
 msgid "Clinical"
 msgstr "الملف العلاجي"
+
+#. module: pt_clinic
+msgid "Treatment"
+msgstr "العلاج"
 
 #. module: pt_clinic
 msgid "Assessments"
@@ -31,6 +43,10 @@ msgstr "التقييمات"
 #. module: pt_clinic
 msgid "Treatment Plans"
 msgstr "خطط العلاج"
+
+#. module: pt_clinic
+msgid "Active Plans"
+msgstr "الخطط النشطة"
 
 #. module: pt_clinic
 msgid "Sessions"
@@ -65,7 +81,23 @@ msgid "Reports"
 msgstr "التقارير"
 
 #. module: pt_clinic
+msgid "Session Analytics"
+msgstr "تحليلات الجلسات"
+
+#. module: pt_clinic
+msgid "Appointment Analytics"
+msgstr "تحليلات المواعيد"
+
+#. module: pt_clinic
+msgid "Reminder Logs"
+msgstr "سجل التذكيرات"
+
+#. module: pt_clinic
 msgid "Configuration"
+msgstr "الإعدادات"
+
+#. module: pt_clinic
+msgid "Settings"
 msgstr "الإعدادات"
 
 #. module: pt_clinic
@@ -75,6 +107,26 @@ msgstr "الفروع"
 #. module: pt_clinic
 msgid "Main Branch"
 msgstr "الفرع الرئيسي"
+
+#. module: pt_clinic
+msgid "Therapy Sheets"
+msgstr "الملفات العلاجية"
+
+#. module: pt_clinic
+msgid "Pending Reminders"
+msgstr "التذكيرات المعلقة"
+
+#. module: pt_clinic
+msgid "Quick Access"
+msgstr "وصول سريع"
+
+#. module: pt_clinic
+msgid "Modern physiotherapy operations hub for reception, therapists, billing, reminders, and management reports — optimized for fast daily work on desktop, tablet, and mobile."
+msgstr "مركز حديث لإدارة عمليات العلاج الطبيعي للاستقبال والأخصائيين والفوترة والتذكيرات وتقارير الإدارة — مصمم للعمل اليومي السريع على الكمبيوتر والتابلت والموبايل."
+
+#. module: pt_clinic
+msgid "Start with patients and appointments from the main buttons, then use treatment plans, sessions, billing, and reports according to each user role. On mobile, swipe the shortcut bar left and right to reach all sections quickly."
+msgstr "ابدأ بالمرضى والمواعيد من الأزرار الأساسية، ثم استخدم خطط العلاج والجلسات والفوترة والتقارير حسب دور كل مستخدم. على الموبايل اسحب شريط الاختصارات يميناً ويساراً للوصول لكل الأقسام بسرعة."
 
 #. module: pt_clinic
 msgid "PT Intake Form"
