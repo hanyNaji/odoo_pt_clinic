@@ -2,7 +2,7 @@
 <odoo>
     <menuitem
         id="menu_pt_clinic_root"
-        name="وقاية"
+        name="Wiqaya"
         action="action_pt_clinic_dashboard"
         sequence="10"
         groups="base.group_user"
@@ -11,7 +11,7 @@
 
     <menuitem
         id="menu_pt_clinic_patients"
-        name="المرضى"
+        name="Patients"
         parent="menu_pt_clinic_root"
         action="action_pt_patient"
         sequence="10"
@@ -19,7 +19,7 @@
     />
     <menuitem
         id="menu_pt_clinic_appointments"
-        name="المواعيد"
+        name="Appointments"
         parent="menu_pt_clinic_root"
         action="action_pt_appointment"
         sequence="20"
@@ -28,14 +28,14 @@
 
     <menuitem
         id="menu_pt_clinic_treatment_root"
-        name="العلاج"
+        name="Treatment"
         parent="menu_pt_clinic_root"
         sequence="30"
         groups="pt_clinic.group_pt_clinic_therapist,pt_clinic.group_pt_clinic_manager"
     />
     <menuitem
         id="menu_pt_clinic_therapy_sheet"
-        name="الملفات العلاجية | Therapy Sheets"
+        name="Therapy Sheets"
         parent="menu_pt_clinic_treatment_root"
         action="action_pt_therapy_sheet"
         sequence="5"
@@ -43,7 +43,7 @@
     />
     <menuitem
         id="menu_pt_clinic_assessment"
-        name="التقييمات | Assessments"
+        name="Assessments"
         parent="menu_pt_clinic_treatment_root"
         action="action_pt_assessment"
         sequence="10"
@@ -51,7 +51,7 @@
     />
     <menuitem
         id="menu_pt_clinic_plan"
-        name="خطط العلاج | Treatment Plans"
+        name="Treatment Plans"
         parent="menu_pt_clinic_treatment_root"
         action="action_pt_treatment_plan"
         sequence="20"
@@ -59,7 +59,7 @@
     />
     <menuitem
         id="menu_pt_clinic_session"
-        name="الجلسات | Sessions"
+        name="Sessions"
         parent="menu_pt_clinic_treatment_root"
         action="action_pt_session"
         sequence="30"
@@ -68,14 +68,14 @@
 
     <menuitem
         id="menu_pt_clinic_billing_root"
-        name="الفوترة"
+        name="Billing"
         parent="menu_pt_clinic_root"
         sequence="40"
         groups="pt_clinic.group_pt_clinic_manager,pt_clinic.group_pt_clinic_billing"
     />
     <menuitem
         id="menu_pt_clinic_package"
-        name="الباقات | Packages"
+        name="Packages"
         parent="menu_pt_clinic_billing_root"
         action="action_pt_package"
         sequence="10"
@@ -83,7 +83,7 @@
     />
     <menuitem
         id="menu_pt_clinic_discount"
-        name="عروض الخصم | Discount Offers"
+        name="Discount Offers"
         parent="menu_pt_clinic_billing_root"
         action="action_pt_discount_offer"
         sequence="20"
@@ -91,7 +91,7 @@
     />
     <menuitem
         id="menu_pt_clinic_contract"
-        name="عقود الشركات | Company Contracts"
+        name="Company Contracts"
         parent="menu_pt_clinic_billing_root"
         action="action_pt_company_contract"
         sequence="30"
@@ -99,7 +99,7 @@
     />
     <menuitem
         id="menu_pt_clinic_invoice_wizard"
-        name="إنشاء فاتورة | Create Invoice"
+        name="Create Invoice"
         parent="menu_pt_clinic_billing_root"
         action="action_pt_session_invoicing_wizard"
         sequence="40"
@@ -108,14 +108,14 @@
 
     <menuitem
         id="menu_pt_clinic_reports_root"
-        name="التقارير"
+        name="Reports"
         parent="menu_pt_clinic_root"
         sequence="50"
         groups="pt_clinic.group_pt_clinic_manager,pt_clinic.group_pt_clinic_billing"
     />
     <menuitem
         id="menu_pt_clinic_report_sessions"
-        name="تحليلات الجلسات | Session Analytics"
+        name="Session Analytics"
         parent="menu_pt_clinic_reports_root"
         action="action_pt_session_reporting"
         sequence="10"
@@ -123,7 +123,7 @@
     />
     <menuitem
         id="menu_pt_clinic_report_appointments"
-        name="تحليلات المواعيد | Appointment Analytics"
+        name="Appointment Analytics"
         parent="menu_pt_clinic_reports_root"
         action="action_pt_appointment_reporting"
         sequence="20"
@@ -131,7 +131,7 @@
     />
     <menuitem
         id="menu_pt_clinic_report_reminders"
-        name="سجل التذكيرات | Reminder Logs"
+        name="Reminder Logs"
         parent="menu_pt_clinic_reports_root"
         action="action_pt_reminder_logs"
         sequence="30"
@@ -140,14 +140,14 @@
 
     <menuitem
         id="menu_pt_clinic_config_root"
-        name="الإعدادات"
+        name="Settings"
         parent="menu_pt_clinic_root"
         sequence="60"
         groups="pt_clinic.group_pt_clinic_manager"
     />
     <menuitem
         id="menu_pt_clinic_branch"
-        name="الفروع | Branches"
+        name="Branches"
         parent="menu_pt_clinic_config_root"
         action="action_pt_branch"
         sequence="10"
