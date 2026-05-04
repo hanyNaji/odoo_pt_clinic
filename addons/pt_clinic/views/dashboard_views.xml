@@ -11,7 +11,7 @@
                             <img class="o_pt_clinic_dashboard_logo" src="/pt_clinic/static/src/img/wiqaya_logo.png" alt="وقاية"/>
                             <div class="o_pt_clinic_dashboard_intro">
                                 <h1>وقاية</h1>
-                                <p>Physiotherapy clinic management with a simpler clinic-first home page.</p>
+                                <p>Modern physiotherapy operations hub for reception, therapists, billing, reminders, and management reports — optimized for fast daily work on desktop, tablet, and mobile.</p>
                             </div>
                         </div>
 
@@ -113,7 +113,7 @@
 
                         <div class="o_pt_clinic_dashboard_notes">
                             <h2>وصول سريع</h2>
-                            <p>استخدم شريط التنقل الثابت بالأعلى للتنقل السريع بين المرضى والمواعيد والعلاج والفوترة والتقارير.</p>
+                            <p>ابدأ بالمرضى والمواعيد من الأزرار الأساسية، ثم استخدم الخطط والجلسات والفوترة حسب دور كل مستخدم. على الموبايل اسحب شريط الاختصارات يميناً ويساراً للوصول لكل الأقسام بسرعة.</p>
                         </div>
                     </div>
                 </sheet>
