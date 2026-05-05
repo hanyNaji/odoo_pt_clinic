@@ -25,56 +25,56 @@ class PtPatient(models.Model):
         )
         return branch.id
 
-    name = fields.Char(string="اسم المريض | Patient Name", required=True, tracking=True)
-    code = fields.Char(string="كود الملف | File Code", default="New", readonly=True, copy=False)
-    partner_id = fields.Many2one("res.partner", string="جهة الاتصال | Contact", required=True, ondelete="restrict")
+    name = fields.Char(string="Patient Name", required=True, tracking=True)
+    code = fields.Char(string="File Code", default="New", readonly=True, copy=False)
+    partner_id = fields.Many2one("res.partner", string="Contact", required=True, ondelete="restrict")
     clinic_company_id = fields.Many2one(
-        "res.company", string="الشركة | Company", required=True, default=lambda self: self.env.company, index=True
+        "res.company", string="Company", required=True, default=lambda self: self.env.company, index=True
     )
     branch_id = fields.Many2one(
         "pt.branch",
-        string="الفرع | Branch",
+        string="Branch",
         domain="[('clinic_company_id', '=', clinic_company_id)]",
         default=_default_branch_id,
         tracking=True,
     )
-    birth_date = fields.Date(string="تاريخ الميلاد | DOB")
-    age_years = fields.Integer(string="العمر | Age", compute="_compute_age_years", store=False)
+    birth_date = fields.Date(string="Date of Birth")
+    age_years = fields.Integer(string="Age", compute="_compute_age_years", store=False)
     gender = fields.Selection(
-        [("male", "ذكر | Male"), ("female", "أنثى | Female"), ("other", "أخرى | Other")],
-        string="النوع | Gender",
+        [("male", "Male"), ("female", "Female"), ("other", "Other")],
+        string="Gender",
         default="other",
     )
-    national_id = fields.Char(string="الرقم القومي | National ID", tracking=True)
+    national_id = fields.Char(string="National ID", tracking=True)
     governorate = fields.Selection(
         [
-            ("damietta", "دمياط | Damietta"),
-            ("dakahlia", "الدقهلية | Dakahlia"),
-            ("cairo", "القاهرة | Cairo"),
-            ("alexandria", "الإسكندرية | Alexandria"),
-            ("other", "أخرى | Other"),
+            ("damietta", "Damietta"),
+            ("dakahlia", "Dakahlia"),
+            ("cairo", "Cairo"),
+            ("alexandria", "Alexandria"),
+            ("other", "Other"),
         ],
-        string="المحافظة | Governorate",
+        string="Governorate",
         default="damietta",
     )
-    phone = fields.Char(string="الهاتف | Phone", related="partner_id.phone", store=True, readonly=False)
-    email = fields.Char(string="البريد الإلكتروني | Email", related="partner_id.email", store=True, readonly=False)
-    whatsapp = fields.Char(string="واتساب | WhatsApp")
-    job_title = fields.Char(string="الوظيفة | Job")
-    primary_physician = fields.Char(string="الطبيب المحول | Primary Physician")
-    emergency_contact = fields.Char(string="طوارئ | Emergency Contact")
-    emergency_relation = fields.Char(string="صلة القرابة | Relation")
-    medical_history = fields.Text(string="التاريخ المرضي | Medical History")
-    allergy_notes = fields.Text(string="الحساسية | Allergy Notes")
+    phone = fields.Char(string="Phone", related="partner_id.phone", store=True, readonly=False)
+    email = fields.Char(string="Email", related="partner_id.email", store=True, readonly=False)
+    whatsapp = fields.Char(string="WhatsApp")
+    job_title = fields.Char(string="Job")
+    primary_physician = fields.Char(string="Primary Physician")
+    emergency_contact = fields.Char(string="Emergency Contact")
+    emergency_relation = fields.Char(string="Relation")
+    medical_history = fields.Text(string="Medical History")
+    allergy_notes = fields.Text(string="Allergy Notes")
     company_id = fields.Many2one(
-        "res.partner", string="جهة العمل | Employer Company", domain=[("is_company", "=", True)]
+        "res.partner", string="Employer Company", domain=[("is_company", "=", True)]
     )
-    active = fields.Boolean(string="نشط | Active", default=True)
-    appointment_ids = fields.One2many("pt.appointment", "patient_id", string="المواعيد | Appointments")
-    session_ids = fields.One2many("pt.session", "patient_id", string="الجلسات | Sessions")
-    assessment_ids = fields.One2many("pt.assessment", "patient_id", string="التقييمات | Assessments")
-    treatment_plan_ids = fields.One2many("pt.treatment.plan", "patient_id", string="الخطط العلاجية | Care Plans")
-    therapy_sheet_ids = fields.One2many("pt.therapy.sheet", "patient_id", string="الملفات العلاجية | Therapy Sheets")
+    active = fields.Boolean(string="Active", default=True)
+    appointment_ids = fields.One2many("pt.appointment", "patient_id", string="Appointments")
+    session_ids = fields.One2many("pt.session", "patient_id", string="Sessions")
+    assessment_ids = fields.One2many("pt.assessment", "patient_id", string="Assessments")
+    treatment_plan_ids = fields.One2many("pt.treatment.plan", "patient_id", string="Care Plans")
+    therapy_sheet_ids = fields.One2many("pt.therapy.sheet", "patient_id", string="Therapy Sheets")
 
     @api.depends("birth_date")
     def _compute_age_years(self):
