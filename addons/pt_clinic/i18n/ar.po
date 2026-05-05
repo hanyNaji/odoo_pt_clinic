@@ -21,6 +21,138 @@ msgid "Patients"
 msgstr "المرضى"
 
 #. module: pt_clinic
+msgid "Patient"
+msgstr "المريض"
+
+#. module: pt_clinic
+msgid "Patient Name"
+msgstr "اسم المريض"
+
+#. module: pt_clinic
+msgid "File Code"
+msgstr "كود الملف"
+
+#. module: pt_clinic
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: pt_clinic
+msgid "Company"
+msgstr "الشركة"
+
+#. module: pt_clinic
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: pt_clinic
+msgid "Branch Code"
+msgstr "كود الفرع"
+
+#. module: pt_clinic
+msgid "Branch Manager"
+msgstr "مدير الفرع"
+
+#. module: pt_clinic
+msgid "Date of Birth"
+msgstr "تاريخ الميلاد"
+
+#. module: pt_clinic
+msgid "Age"
+msgstr "العمر"
+
+#. module: pt_clinic
+msgid "Gender"
+msgstr "النوع"
+
+#. module: pt_clinic
+msgid "Male"
+msgstr "ذكر"
+
+#. module: pt_clinic
+msgid "Female"
+msgstr "أنثى"
+
+#. module: pt_clinic
+msgid "Other"
+msgstr "أخرى"
+
+#. module: pt_clinic
+msgid "National ID"
+msgstr "الرقم القومي"
+
+#. module: pt_clinic
+msgid "Governorate"
+msgstr "المحافظة"
+
+#. module: pt_clinic
+msgid "Damietta"
+msgstr "دمياط"
+
+#. module: pt_clinic
+msgid "Dakahlia"
+msgstr "الدقهلية"
+
+#. module: pt_clinic
+msgid "Cairo"
+msgstr "القاهرة"
+
+#. module: pt_clinic
+msgid "Alexandria"
+msgstr "الإسكندرية"
+
+#. module: pt_clinic
+msgid "Phone"
+msgstr "الهاتف"
+
+#. module: pt_clinic
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#. module: pt_clinic
+msgid "WhatsApp"
+msgstr "واتساب"
+
+#. module: pt_clinic
+msgid "Job"
+msgstr "الوظيفة"
+
+#. module: pt_clinic
+msgid "Primary Physician"
+msgstr "الطبيب المحول"
+
+#. module: pt_clinic
+msgid "Emergency Contact"
+msgstr "جهة اتصال الطوارئ"
+
+#. module: pt_clinic
+msgid "Relation"
+msgstr "صلة القرابة"
+
+#. module: pt_clinic
+msgid "Medical History"
+msgstr "التاريخ المرضي"
+
+#. module: pt_clinic
+msgid "Allergy Notes"
+msgstr "ملاحظات الحساسية"
+
+#. module: pt_clinic
+msgid "Employer Company"
+msgstr "جهة العمل"
+
+#. module: pt_clinic
+msgid "Active"
+msgstr "نشط"
+
+#. module: pt_clinic
+msgid "Medical"
+msgstr "الملف الطبي"
+
+#. module: pt_clinic
+msgid "Care Plans"
+msgstr "الخطط العلاجية"
+
+#. module: pt_clinic
 msgid "Appointments"
 msgstr "المواعيد"
 
