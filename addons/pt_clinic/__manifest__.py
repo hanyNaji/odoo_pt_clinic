@@ -1,7 +1,7 @@
 {
     "name": "Wiqaya Physiotherapy Management",
     "version": "19.0.5.0.0",
-    "summary": "Arabic-first physiotherapy clinic operations, care plans, and billing",
+    "summary": "Physiotherapy clinic operations, care plans, and billing",
     "category": "Healthcare",
     "author": "Wiqaya Clinic Team",
     "license": "LGPL-3",
@@ -9,7 +9,6 @@
     "assets": {
         "web.assets_backend": [
             "pt_clinic/static/src/css/wiqaya_dashboard.css",
-            "pt_clinic/static/src/xml/navbar_apps.xml",
         ],
     },
     "data": [
