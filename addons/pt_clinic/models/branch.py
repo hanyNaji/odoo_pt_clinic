@@ -10,15 +10,15 @@ class PtBranch(models.Model):
         "Branch code must be unique per company.",
     )
 
-    name = fields.Char(string="الفرع | Branch", required=True)
-    code = fields.Char(string="كود الفرع | Branch Code", required=True)
+    name = fields.Char(string="Branch", required=True)
+    code = fields.Char(string="Branch Code", required=True)
     clinic_company_id = fields.Many2one(
-        "res.company", string="الشركة | Company", required=True, default=lambda self: self.env.company, index=True
+        "res.company", string="Company", required=True, default=lambda self: self.env.company, index=True
     )
-    manager_id = fields.Many2one("res.users", string="مدير الفرع | Branch Manager")
-    phone = fields.Char(string="الهاتف | Phone")
-    email = fields.Char(string="البريد الإلكتروني | Email")
-    address = fields.Char(string="العنوان | Address")
-    active = fields.Boolean(string="نشط | Active", default=True)
+    manager_id = fields.Many2one("res.users", string="Branch Manager")
+    phone = fields.Char(string="Phone")
+    email = fields.Char(string="Email")
+    address = fields.Char(string="Address")
+    active = fields.Boolean(string="Active", default=True)
 
 

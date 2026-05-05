@@ -21,7 +21,7 @@
         <field name="name">pt.patient.form</field>
         <field name="model">pt.patient</field>
         <field name="arch" type="xml">
-            <form string="المريض | Patient">
+            <form string="Patient">
                 <sheet>
                     <group>
                         <group>
@@ -53,25 +53,25 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="الملف الطبي | Medical">
+                        <page string="Medical">
                             <group>
                                 <field name="medical_history"/>
                                 <field name="allergy_notes"/>
                             </group>
                         </page>
-                        <page string="المواعيد | Appointments">
+                        <page string="Appointments">
                             <field name="appointment_ids"/>
                         </page>
-                        <page string="التقييمات | Assessments">
+                        <page string="Assessments">
                             <field name="assessment_ids"/>
                         </page>
-                        <page string="الخطط العلاجية | Care Plans">
+                        <page string="Care Plans">
                             <field name="treatment_plan_ids"/>
                         </page>
-                        <page string="الجلسات | Sessions">
+                        <page string="Sessions">
                             <field name="session_ids"/>
                         </page>
-                        <page string="الملفات العلاجية | Therapy Sheets">
+                        <page string="Therapy Sheets">
                             <field name="therapy_sheet_ids"/>
                         </page>
                     </notebook>
@@ -81,7 +81,7 @@
     </record>
 
     <record id="action_pt_patient" model="ir.actions.act_window">
-        <field name="name">المرضى | Patients</field>
+        <field name="name">Patients</field>
         <field name="res_model">pt.patient</field>
         <field name="view_mode">list,form</field>
     </record>
