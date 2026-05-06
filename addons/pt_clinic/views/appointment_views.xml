@@ -1,21 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_pt_appointment_tree" model="ir.ui.view">
-        <field name="name">pt.appointment.tree</field>
+    <record id="view_pt_appointment_search" model="ir.ui.view">
+        <field name="name">pt.appointment.search</field>
         <field name="model">pt.appointment</field>
         <field name="arch" type="xml">
-            <list>
+            <search string="Search Appointments">
                 <field name="name"/>
                 <field name="patient_id"/>
                 <field name="therapist_id"/>
                 <field name="assistant_id"/>
                 <field name="branch_id"/>
+                <field name="room"/>
+                <separator/>
+                <filter string="My Schedule" name="my_schedule" domain="[('therapist_id', '=', uid)]"/>
+                <filter string="Open" name="open" domain="[('status', 'in', ['draft', 'confirmed'])]"/>
+                <filter string="Needs Reminder" name="needs_reminder" domain="[('status', 'in', ['draft', 'confirmed']), ('reminder_sent', '=', False)]"/>
+                <filter string="Done" name="done" domain="[('status', '=', 'done')]"/>
+                <filter string="No Show" name="no_show" domain="[('status', '=', 'no_show')]"/>
+                <separator/>
+                <filter string="Today" name="today" domain="[('start_datetime', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')), ('start_datetime', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                <filter string="Upcoming" name="upcoming" domain="[('start_datetime', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="group_status" context="{'group_by': 'status'}"/>
+                    <filter string="Therapist" name="group_therapist" context="{'group_by': 'therapist_id'}"/>
+                    <filter string="Branch" name="group_branch" context="{'group_by': 'branch_id'}"/>
+                    <filter string="Day" name="group_day" context="{'group_by': 'start_datetime:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_pt_appointment_tree" model="ir.ui.view">
+        <field name="name">pt.appointment.tree</field>
+        <field name="model">pt.appointment</field>
+        <field name="arch" type="xml">
+            <list decoration-success="status == 'done'" decoration-warning="status == 'draft'" decoration-danger="status in ('cancelled', 'no_show')">
+                <field name="start_datetime"/>
+                <field name="patient_id"/>
+                <field name="therapist_id"/>
                 <field name="treatment_type"/>
+                <field name="status" widget="badge"/>
+                <field name="branch_id" optional="hide"/>
+                <field name="assistant_id" optional="hide"/>
+                <field name="room" optional="hide"/>
+                <field name="end_datetime" optional="hide"/>
+                <field name="reminder_sent" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pt_appointment_kanban" model="ir.ui.view">
+        <field name="name">pt.appointment.kanban</field>
+        <field name="model">pt.appointment</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="status" class="o_kanban_mobile">
+                <field name="patient_id"/>
+                <field name="therapist_id"/>
                 <field name="start_datetime"/>
                 <field name="end_datetime"/>
-                <field name="reminder_sent"/>
+                <field name="branch_id"/>
+                <field name="room"/>
                 <field name="status"/>
-            </list>
+                <templates>
+                    <t t-name="card">
+                        <div class="o_pt_clinic_mobile_card">
+                            <div class="o_pt_clinic_card_title">
+                                <field name="patient_id"/>
+                            </div>
+                            <div class="o_pt_clinic_card_meta">
+                                <i class="fa fa-clock-o"/> <field name="start_datetime"/>
+                            </div>
+                            <div class="o_pt_clinic_card_meta">
+                                <i class="fa fa-user-md"/> <field name="therapist_id"/>
+                            </div>
+                            <div class="o_pt_clinic_card_meta" t-if="record.branch_id.raw_value">
+                                <i class="fa fa-map-marker"/> <field name="branch_id"/>
+                            </div>
+                            <div class="o_pt_clinic_card_footer">
+                                <field name="status" widget="badge"/>
+                                <span t-if="record.room.raw_value" class="badge text-bg-light"><field name="room"/></span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
 
@@ -23,13 +91,13 @@
         <field name="name">pt.appointment.form</field>
         <field name="model">pt.appointment</field>
         <field name="arch" type="xml">
-            <form string="الموعد | Appointment">
+            <form string="الموعد | Appointment" class="o_pt_clinic_touch_form">
                 <header>
-                    <button string="تأكيد | Confirm" type="object" name="action_confirm" class="btn-primary"/>
-                    <button string="تم | Done" type="object" name="action_done"/>
-                    <button string="إنشاء Session" type="object" name="action_create_session"/>
-                    <button string="عدم حضور | No Show" type="object" name="action_no_show"/>
-                    <button string="إلغاء | Cancel" type="object" name="action_cancel"/>
+                    <button string="تأكيد | Confirm" type="object" name="action_confirm" class="btn-primary" invisible="status != 'draft'"/>
+                    <button string="تم | Done" type="object" name="action_done" invisible="status not in ('draft', 'confirmed')"/>
+                    <button string="إنشاء Session" type="object" name="action_create_session" invisible="session_id"/>
+                    <button string="عدم حضور | No Show" type="object" name="action_no_show" invisible="status not in ('draft', 'confirmed')"/>
+                    <button string="إلغاء | Cancel" type="object" name="action_cancel" invisible="status in ('done', 'cancelled')"/>
                     <field name="status" widget="statusbar" statusbar_visible="draft,confirmed,done,cancelled,no_show"/>
                 </header>
                 <sheet>
@@ -51,7 +119,7 @@
                             <field name="reminder_sent_at" readonly="1"/>
                         </group>
                     </group>
-                    <field name="notes"/>
+                    <field name="notes" placeholder="Clinical/reception notes visible to the care team..."/>
                 </sheet>
             </form>
         </field>
@@ -61,10 +129,11 @@
         <field name="name">pt.appointment.calendar</field>
         <field name="model">pt.appointment</field>
         <field name="arch" type="xml">
-            <calendar date_start="start_datetime" date_stop="end_datetime" color="therapist_id" string="المواعيد | Appointments">
+            <calendar date_start="start_datetime" date_stop="end_datetime" color="therapist_id" event_open_popup="true" string="المواعيد | Appointments">
                 <field name="name"/>
                 <field name="patient_id"/>
                 <field name="status"/>
+                <field name="room"/>
             </calendar>
         </field>
     </record>
@@ -72,7 +141,8 @@
     <record id="action_pt_appointment" model="ir.actions.act_window">
         <field name="name">المواعيد | Appointments</field>
         <field name="res_model">pt.appointment</field>
-        <field name="view_mode">calendar,list,form</field>
+        <field name="view_mode">calendar,kanban,list,form</field>
+        <field name="search_view_id" ref="view_pt_appointment_search"/>
+        <field name="context">{'search_default_today': 1, 'search_default_open': 1}</field>
     </record>
 </odoo>
-

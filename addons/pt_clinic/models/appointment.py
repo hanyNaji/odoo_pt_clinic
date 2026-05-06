@@ -9,7 +9,7 @@ class PtAppointment(models.Model):
     _inherit = ["pt.reminder.mixin"]
 
     name = fields.Char(string="اسم الموعد | Appointment", required=True, default="جلسة علاج | Therapy Session")
-    patient_id = fields.Many2one("pt.patient", string="المريض | Patient", required=True, ondelete="restrict")
+    patient_id = fields.Many2one("pt.patient", string="المريض | Patient", required=True, ondelete="restrict", index=True)
     clinic_company_id = fields.Many2one(
         "res.company", string="الشركة | Company", required=True, default=lambda self: self.env.company, index=True
     )
@@ -17,9 +17,12 @@ class PtAppointment(models.Model):
         "pt.branch",
         string="الفرع | Branch",
         domain="[('clinic_company_id', '=', clinic_company_id)]",
+        index=True,
     )
-    therapist_id = fields.Many2one("res.users", string="المعالج | Therapist", required=True, default=lambda self: self.env.user)
-    assistant_id = fields.Many2one("res.users", string="الاستقبال | Reception")
+    therapist_id = fields.Many2one(
+        "res.users", string="المعالج | Therapist", required=True, default=lambda self: self.env.user, index=True
+    )
+    assistant_id = fields.Many2one("res.users", string="الاستقبال | Reception", index=True)
     treatment_type = fields.Selection(
         [
             ("evaluation", "تقييم أولي | Initial Evaluation"),
@@ -32,8 +35,8 @@ class PtAppointment(models.Model):
         default="followup",
         required=True,
     )
-    start_datetime = fields.Datetime(string="البداية | Start", required=True)
-    end_datetime = fields.Datetime(string="النهاية | End", required=True)
+    start_datetime = fields.Datetime(string="البداية | Start", required=True, index=True)
+    end_datetime = fields.Datetime(string="النهاية | End", required=True, index=True)
     status = fields.Selection(
         [
             ("draft", "مسودة | Draft"),
@@ -44,10 +47,11 @@ class PtAppointment(models.Model):
         ],
         string="الحالة | Status",
         default="draft",
+        index=True,
     )
     room = fields.Char(string="الغرفة | Room")
     notes = fields.Text(string="ملاحظات | Notes")
-    session_id = fields.Many2one("pt.session", string="الجلسة | Session", readonly=True)
+    session_id = fields.Many2one("pt.session", string="الجلسة | Session", readonly=True, index=True)
     reminder_sent = fields.Boolean(string="تم التذكير | Reminder Sent", default=False, readonly=True)
     reminder_sent_at = fields.Datetime(string="وقت التذكير | Reminder Sent At", readonly=True)
 
