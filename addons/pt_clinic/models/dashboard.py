@@ -5,18 +5,14 @@ import pytz
 
 from odoo import fields, models, tools
 
-from ..hooks import migrate_translated_char_columns
-
 
 class PtClinicDashboard(models.Model):
     _name = "pt.clinic.dashboard"
     _description = "Wiqaya Clinic Dashboard"
 
-    name = fields.Char(default="Wiqaya", required=True, translate=True)
-
-    def init(self):
-        super().init()
-        migrate_translated_char_columns(self.env)
+    # Keep record name as a plain Char. UI labels are translated via i18n files.
+    # This avoids Odoo 19 jsonb translated-field reads on legacy varchar columns.
+    name = fields.Char(default="Wiqaya", required=True)
 
     patient_count = fields.Integer(compute="_compute_counts")
     appointment_today_count = fields.Integer(compute="_compute_counts")
