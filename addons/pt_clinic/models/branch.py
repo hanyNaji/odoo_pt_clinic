@@ -10,7 +10,7 @@ class PtBranch(models.Model):
         "Branch code must be unique per company.",
     )
 
-    name = fields.Char(string="Branch", required=True)
+    name = fields.Char(string="Branch", required=True, translate=True)
     code = fields.Char(string="Branch Code", required=True)
     clinic_company_id = fields.Many2one(
         "res.company", string="Company", required=True, default=lambda self: self.env.company, index=True

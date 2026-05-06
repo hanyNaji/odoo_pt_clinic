@@ -8,52 +8,52 @@ class PtAppointment(models.Model):
     _order = "start_datetime desc"
     _inherit = ["pt.reminder.mixin"]
 
-    name = fields.Char(string="اسم الموعد | Appointment", required=True, default="جلسة علاج | Therapy Session")
-    patient_id = fields.Many2one("pt.patient", string="المريض | Patient", required=True, ondelete="restrict", index=True)
+    name = fields.Char(string="Appointment", required=True, default="Therapy Session")
+    patient_id = fields.Many2one("pt.patient", string="Patient", required=True, ondelete="restrict", index=True)
     clinic_company_id = fields.Many2one(
-        "res.company", string="الشركة | Company", required=True, default=lambda self: self.env.company, index=True
+        "res.company", string="Company", required=True, default=lambda self: self.env.company, index=True
     )
     branch_id = fields.Many2one(
         "pt.branch",
-        string="الفرع | Branch",
+        string="Branch",
         domain="[('clinic_company_id', '=', clinic_company_id)]",
         index=True,
     )
     therapist_id = fields.Many2one(
-        "res.users", string="المعالج | Therapist", required=True, default=lambda self: self.env.user, index=True
+        "res.users", string="Therapist", required=True, default=lambda self: self.env.user, index=True
     )
-    assistant_id = fields.Many2one("res.users", string="الاستقبال | Reception", index=True)
+    assistant_id = fields.Many2one("res.users", string="Reception", index=True)
     treatment_type = fields.Selection(
         [
-            ("evaluation", "تقييم أولي | Initial Evaluation"),
-            ("manual", "علاج يدوي | Manual Therapy"),
-            ("exercise", "تمارين علاجية | Exercise Therapy"),
-            ("electro", "علاج كهربائي | Electrotherapy"),
-            ("followup", "متابعة | Follow-up"),
+            ("evaluation", "Initial Evaluation"),
+            ("manual", "Manual Therapy"),
+            ("exercise", "Exercise Therapy"),
+            ("electro", "Electrotherapy"),
+            ("followup", "Follow-up"),
         ],
-        string="نوع الجلسة | Treatment Type",
+        string="Treatment Type",
         default="followup",
         required=True,
     )
-    start_datetime = fields.Datetime(string="البداية | Start", required=True, index=True)
-    end_datetime = fields.Datetime(string="النهاية | End", required=True, index=True)
+    start_datetime = fields.Datetime(string="Start", required=True, index=True)
+    end_datetime = fields.Datetime(string="End", required=True, index=True)
     status = fields.Selection(
         [
-            ("draft", "مسودة | Draft"),
-            ("confirmed", "مؤكد | Confirmed"),
-            ("done", "تم | Done"),
-            ("cancelled", "ملغي | Cancelled"),
-            ("no_show", "عدم حضور | No Show"),
+            ("draft", "Draft"),
+            ("confirmed", "Confirmed"),
+            ("done", "Done"),
+            ("cancelled", "Cancelled"),
+            ("no_show", "No Show"),
         ],
-        string="الحالة | Status",
+        string="Status",
         default="draft",
         index=True,
     )
-    room = fields.Char(string="الغرفة | Room")
-    notes = fields.Text(string="ملاحظات | Notes")
-    session_id = fields.Many2one("pt.session", string="الجلسة | Session", readonly=True, index=True)
-    reminder_sent = fields.Boolean(string="تم التذكير | Reminder Sent", default=False, readonly=True)
-    reminder_sent_at = fields.Datetime(string="وقت التذكير | Reminder Sent At", readonly=True)
+    room = fields.Char(string="Room")
+    notes = fields.Text(string="Notes")
+    session_id = fields.Many2one("pt.session", string="Session", readonly=True, index=True)
+    reminder_sent = fields.Boolean(string="Reminder Sent", default=False, readonly=True)
+    reminder_sent_at = fields.Datetime(string="Reminder Sent At", readonly=True)
 
     @api.onchange("patient_id")
     def _onchange_patient_id(self):

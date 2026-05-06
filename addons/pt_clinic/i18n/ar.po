@@ -271,3 +271,531 @@ msgstr "نموذج الموافقة"
 #. module: pt_clinic
 msgid "PT Branded Invoice"
 msgstr "فاتورة العيادة"
+
+#. module: pt_clinic
+msgid "Activate"
+msgstr "تفعيل"
+
+#. module: pt_clinic
+msgid "Additional Findings"
+msgstr "ملاحظات الفحص"
+
+#. module: pt_clinic
+msgid "Allergies"
+msgstr "الحساسية"
+
+#. module: pt_clinic
+msgid "Appointment"
+msgstr "الموعد"
+
+#. module: pt_clinic
+msgid "Assessment"
+msgstr "اسم التقييم"
+
+#. module: pt_clinic
+msgid "Assessment Date"
+msgstr "تاريخ التقييم"
+
+#. module: pt_clinic
+msgid "Base Price"
+msgstr "السعر الأساسي"
+
+#. module: pt_clinic
+msgid "Billed"
+msgstr "تمت الفوترة"
+
+#. module: pt_clinic
+msgid "Billing Mode"
+msgstr "نمط الفوترة"
+
+#. module: pt_clinic
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: pt_clinic
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: pt_clinic
+msgid "Case Type"
+msgstr "نوع الحالة"
+
+#. module: pt_clinic
+msgid "Chief Complaints"
+msgstr "الشكوى الرئيسية"
+
+#. module: pt_clinic
+msgid "Company Contract"
+msgstr "عقد شركة"
+
+#. module: pt_clinic
+msgid "Complaint"
+msgstr "الشكوى"
+
+#. module: pt_clinic
+msgid "Complete"
+msgstr "إكمال"
+
+#. module: pt_clinic
+msgid "Completed"
+msgstr "مكتملة"
+
+#. module: pt_clinic
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: pt_clinic
+msgid "Confirmed"
+msgstr "مؤكد"
+
+#. module: pt_clinic
+msgid "Contract"
+msgstr "اسم العقد"
+
+#. module: pt_clinic
+msgid "Contract Lines"
+msgstr "بنود العقد"
+
+#. module: pt_clinic
+msgid "Corporate Client"
+msgstr "شركة متعاقدة"
+
+#. module: pt_clinic
+msgid "Corporate Partner"
+msgstr "الجهة المتعاقدة"
+
+#. module: pt_clinic
+msgid "Course"
+msgstr "مسار الحالة"
+
+#. module: pt_clinic
+msgid "Create Session Invoice"
+msgstr "إنشاء فاتورة جلسات"
+
+#. module: pt_clinic
+msgid "Daily Log"
+msgstr "السجل اليومي"
+
+#. module: pt_clinic
+msgid "Diagnosis"
+msgstr "التشخيص"
+
+#. module: pt_clinic
+msgid "Discount %"
+msgstr "خصم %"
+
+#. module: pt_clinic
+msgid "Discount Offer"
+msgstr "عرض الخصم"
+
+#. module: pt_clinic
+msgid "Discount Type"
+msgstr "نوع الخصم"
+
+#. module: pt_clinic
+msgid "Discount Value"
+msgstr "قيمة الخصم"
+
+#. module: pt_clinic
+msgid "Done"
+msgstr "تم"
+
+#. module: pt_clinic
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: pt_clinic
+msgid "Duration"
+msgstr "المدة بالدقائق"
+
+#. module: pt_clinic
+msgid "Electrotherapy"
+msgstr "علاج كهربائي"
+
+#. module: pt_clinic
+msgid "End"
+msgstr "النهاية"
+
+#. module: pt_clinic
+msgid "End Date"
+msgstr "تاريخ النهاية"
+
+#. module: pt_clinic
+msgid "Exercise Therapy"
+msgstr "تمارين علاجية"
+
+#. module: pt_clinic
+msgid "Expired"
+msgstr "منتهي"
+
+#. module: pt_clinic
+msgid "Final Price"
+msgstr "السعر النهائي"
+
+#. module: pt_clinic
+msgid "Finding"
+msgstr "نتيجة الفحص"
+
+#. module: pt_clinic
+msgid "Fixed"
+msgstr "قيمة"
+
+#. module: pt_clinic
+msgid "Fixed Price"
+msgstr "سعر ثابت"
+
+#. module: pt_clinic
+msgid "Follow-up"
+msgstr "متابعة"
+
+#. module: pt_clinic
+msgid "Functional Limitations"
+msgstr "القيود الوظيفية"
+
+#. module: pt_clinic
+msgid "Goals (Patient & Therapist)"
+msgstr "الأهداف"
+
+#. module: pt_clinic
+msgid "Goals Summary"
+msgstr "الأهداف الحرة"
+
+#. module: pt_clinic
+msgid "History of Present / Past Illness"
+msgstr "تاريخ الحالة الحالية والسابق"
+
+#. module: pt_clinic
+msgid "Initial Evaluation"
+msgstr "تقييم أولي"
+
+#. module: pt_clinic
+msgid "Interventions Summary"
+msgstr "التدخلات الحرة"
+
+#. module: pt_clinic
+msgid "Manual Therapy"
+msgstr "علاج يدوي"
+
+#. module: pt_clinic
+msgid "No Show"
+msgstr "عدم حضور"
+
+#. module: pt_clinic
+msgid "None"
+msgstr "بدون"
+
+#. module: pt_clinic
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: pt_clinic
+msgid "Offer"
+msgstr "اسم العرض"
+
+#. module: pt_clinic
+msgid "Offer Code"
+msgstr "كود العرض"
+
+#. module: pt_clinic
+msgid "Offer Type"
+msgstr "نوع العرض"
+
+#. module: pt_clinic
+msgid "Onset"
+msgstr "بداية الحالة"
+
+#. module: pt_clinic
+msgid "Operations"
+msgstr "العمليات"
+
+#. module: pt_clinic
+msgid "Other Conditions"
+msgstr "حالات أخرى"
+
+#. module: pt_clinic
+msgid "Package"
+msgstr "الباقة"
+
+#. module: pt_clinic
+msgid "Pain After"
+msgstr "الألم بعد الجلسة"
+
+#. module: pt_clinic
+msgid "Pain Before"
+msgstr "الألم قبل الجلسة"
+
+#. module: pt_clinic
+msgid "Pain Score"
+msgstr "درجة الألم"
+
+#. module: pt_clinic
+msgid "Percent"
+msgstr "نسبة"
+
+#. module: pt_clinic
+msgid "Plan Date"
+msgstr "تاريخ الخطة"
+
+#. module: pt_clinic
+msgid "Postpaid by Sessions"
+msgstr "حسب الجلسات"
+
+#. module: pt_clinic
+msgid "Prepaid"
+msgstr "مدفوعة مقدما"
+
+#. module: pt_clinic
+msgid "Reception"
+msgstr "الاستقبال"
+
+#. module: pt_clinic
+msgid "Recommendations"
+msgstr "التوصيات"
+
+#. module: pt_clinic
+msgid "Red Flags / Precautions"
+msgstr "محاذير واحتياطات"
+
+#. module: pt_clinic
+msgid "Remaining Sessions"
+msgstr "المتبقي"
+
+#. module: pt_clinic
+msgid "Reminder Lead Time"
+msgstr "موعد التذكير"
+
+#. module: pt_clinic
+msgid "Reminder Sent"
+msgstr "تم التذكير"
+
+#. module: pt_clinic
+msgid "Reminder Sent At"
+msgstr "وقت التذكير"
+
+#. module: pt_clinic
+msgid "Reminders"
+msgstr "التذكيرات"
+
+#. module: pt_clinic
+msgid "Room"
+msgstr "الغرفة"
+
+#. module: pt_clinic
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: pt_clinic
+msgid "Service Notes"
+msgstr "ملاحظات الخدمة"
+
+#. module: pt_clinic
+msgid "Session"
+msgstr "الجلسة"
+
+#. module: pt_clinic
+msgid "Session Date"
+msgstr "تاريخ الجلسة"
+
+#. module: pt_clinic
+msgid "Sheet"
+msgstr "الملف"
+
+#. module: pt_clinic
+msgid "Sheet Date"
+msgstr "تاريخ الملف"
+
+#. module: pt_clinic
+msgid "Sheet Name"
+msgstr "اسم الملف"
+
+#. module: pt_clinic
+msgid "Signature"
+msgstr "التوقيع"
+
+#. module: pt_clinic
+msgid "Start"
+msgstr "البداية"
+
+#. module: pt_clinic
+msgid "Start Date"
+msgstr "تاريخ البداية"
+
+#. module: pt_clinic
+msgid "Status"
+msgstr "الحالة"
+
+#. module: pt_clinic
+msgid "Therapist"
+msgstr "المعالج"
+
+#. module: pt_clinic
+msgid "Therapy Session"
+msgstr "جلسة علاج"
+
+#. module: pt_clinic
+msgid "Therapy Sheet"
+msgstr "الملف العلاجي"
+
+#. module: pt_clinic
+msgid "Time"
+msgstr "الوقت"
+
+#. module: pt_clinic
+msgid "Total Sessions"
+msgstr "إجمالي الجلسات"
+
+#. module: pt_clinic
+msgid "Treatment Plan"
+msgstr "اسم الخطة"
+
+#. module: pt_clinic
+msgid "Treatment Program"
+msgstr "برنامج العلاج"
+
+#. module: pt_clinic
+msgid "Treatment Type"
+msgstr "نوع الجلسة"
+
+#. module: pt_clinic
+msgid "Unit Price"
+msgstr "سعر الوحدة"
+
+#. module: pt_clinic
+msgid "Usage"
+msgstr "استخدام الجلسات"
+
+#. module: pt_clinic
+msgid "Used On"
+msgstr "تاريخ الاستخدام"
+
+#. module: pt_clinic
+msgid "Used Sessions"
+msgstr "المستخدم"
+
+#. module: pt_clinic
+msgid "Value"
+msgstr "القيمة"
+
+#. module: pt_clinic
+msgid "Session Invoice"
+msgstr "فاتورة الجلسات"
+
+#. module: pt_clinic
+msgid "Patient File"
+msgstr "ملف المريض"
+
+#. module: pt_clinic
+msgid "Patient name"
+msgstr "اسم المريض"
+
+#. module: pt_clinic
+msgid "Essential Details"
+msgstr "البيانات الأساسية"
+
+#. module: pt_clinic
+msgid "Medical Notes"
+msgstr "ملاحظات طبية"
+
+#. module: pt_clinic
+msgid "Optional Details"
+msgstr "بيانات اختيارية"
+
+#. module: pt_clinic
+msgid "Administration"
+msgstr "الإدارة"
+
+#. module: pt_clinic
+msgid "Relevant medical history"
+msgstr "التاريخ المرضي المهم"
+
+#. module: pt_clinic
+msgid "Allergies or alerts"
+msgstr "الحساسية أو التنبيهات"
+
+#. module: pt_clinic
+msgid "Clinic Access"
+msgstr "صلاحيات العيادة"
+
+#. module: pt_clinic
+msgid "Manager"
+msgstr "المدير"
+
+#. module: pt_clinic
+msgid "Wiqaya - Main Branch"
+msgstr "وقاية - الفرع الرئيسي"
+
+#. module: pt_clinic
+msgid "Therapy Sessions x%s - %s"
+msgstr "جلسات علاج طبيعي ×%s - %s"
+
+#. module: pt_clinic
+msgid "Create Session"
+msgstr "إنشاء جلسة"
+
+#. module: pt_clinic
+msgid "SMS Gateway URL"
+msgstr "رابط بوابة الرسائل النصية"
+
+#. module: pt_clinic
+msgid "WhatsApp Gateway URL"
+msgstr "رابط بوابة واتساب"
+
+#. module: pt_clinic
+msgid "Patient Intake Form"
+msgstr "استمارة استقبال مريض"
+
+#. module: pt_clinic
+msgid "Allergies and Medical Notes"
+msgstr "الحساسية والملاحظات الطبية"
+
+#. module: pt_clinic
+msgid "Physical Therapy Consent Form"
+msgstr "نموذج موافقة على العلاج الطبيعي"
+
+#. module: pt_clinic
+msgid "I,"
+msgstr "أقر أنا"
+
+#. module: pt_clinic
+msgid "confirm that I agree to receive physical therapy services after the treatment plan, expected benefits, and possible risks have been explained."
+msgstr "بأنني وافقت على تلقي خدمات العلاج الطبيعي بعد شرح الخطة العلاجية والفوائد المتوقعة والمخاطر المحتملة."
+
+#. module: pt_clinic
+msgid "Patient Signature:"
+msgstr "توقيع المريض:"
+
+#. module: pt_clinic
+msgid "Therapist Signature:"
+msgstr "توقيع الأخصائي:"
+
+#. module: pt_clinic
+msgid "Date:"
+msgstr "التاريخ:"
+
+#. module: pt_clinic
+msgid "Physical Therapy Session Invoice"
+msgstr "فاتورة جلسات علاج طبيعي"
+
+#. module: pt_clinic
+msgid "Invoice Number:"
+msgstr "رقم الفاتورة:"
+
+#. module: pt_clinic
+msgid "Customer:"
+msgstr "العميل:"
+
+#. module: pt_clinic
+msgid "Description"
+msgstr "الوصف"
+
+#. module: pt_clinic
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: pt_clinic
+msgid "Grand Total:"
+msgstr "الإجمالي الكلي:"
+
+#. module: pt_clinic
+msgid "Total"
+msgstr "الإجمالي"

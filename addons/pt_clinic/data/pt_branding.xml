@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="pt_dashboard_main" model="pt.clinic.dashboard">
-        <field name="name">وقاية</field>
+        <field name="name">Wiqaya</field>
     </record>
 
     <function model="pt.clinic.dashboard" name="apply_wiqaya_branding">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="pt_branch_main" model="pt.branch">
-        <field name="name">وقاية - الفرع الرئيسي</field>
+        <field name="name">Wiqaya - Main Branch</field>
         <field name="code">MAIN</field>
         <field name="phone">+20 000 000 0000</field>
         <field name="address">Clinic address to be updated</field>

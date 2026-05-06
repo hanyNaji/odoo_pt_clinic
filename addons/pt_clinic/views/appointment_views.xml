@@ -91,13 +91,13 @@
         <field name="name">pt.appointment.form</field>
         <field name="model">pt.appointment</field>
         <field name="arch" type="xml">
-            <form string="الموعد | Appointment" class="o_pt_clinic_touch_form">
+            <form string="Appointment" class="o_pt_clinic_touch_form">
                 <header>
-                    <button string="تأكيد | Confirm" type="object" name="action_confirm" class="btn-primary" invisible="status != 'draft'"/>
-                    <button string="تم | Done" type="object" name="action_done" invisible="status not in ('draft', 'confirmed')"/>
-                    <button string="إنشاء Session" type="object" name="action_create_session" invisible="session_id"/>
-                    <button string="عدم حضور | No Show" type="object" name="action_no_show" invisible="status not in ('draft', 'confirmed')"/>
-                    <button string="إلغاء | Cancel" type="object" name="action_cancel" invisible="status in ('done', 'cancelled')"/>
+                    <button string="Confirm" type="object" name="action_confirm" class="btn-primary" invisible="status != 'draft'"/>
+                    <button string="Done" type="object" name="action_done" invisible="status not in ('draft', 'confirmed')"/>
+                    <button string="Create Session" type="object" name="action_create_session" invisible="session_id"/>
+                    <button string="No Show" type="object" name="action_no_show" invisible="status not in ('draft', 'confirmed')"/>
+                    <button string="Cancel" type="object" name="action_cancel" invisible="status in ('done', 'cancelled')"/>
                     <field name="status" widget="statusbar" statusbar_visible="draft,confirmed,done,cancelled,no_show"/>
                 </header>
                 <sheet>
@@ -129,7 +129,7 @@
         <field name="name">pt.appointment.calendar</field>
         <field name="model">pt.appointment</field>
         <field name="arch" type="xml">
-            <calendar date_start="start_datetime" date_stop="end_datetime" color="therapist_id" event_open_popup="true" string="المواعيد | Appointments">
+            <calendar date_start="start_datetime" date_stop="end_datetime" color="therapist_id" event_open_popup="true" string="Appointments">
                 <field name="name"/>
                 <field name="patient_id"/>
                 <field name="status"/>
@@ -139,7 +139,7 @@
     </record>
 
     <record id="action_pt_appointment" model="ir.actions.act_window">
-        <field name="name">المواعيد | Appointments</field>
+        <field name="name">Appointments</field>
         <field name="res_model">pt.appointment</field>
         <field name="view_mode">calendar,kanban,list,form</field>
         <field name="search_view_id" ref="view_pt_appointment_search"/>

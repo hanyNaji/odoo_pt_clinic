@@ -28,7 +28,7 @@ class PtPatient(models.Model):
 
     name = fields.Char(string="Patient Name", required=True, tracking=True)
     code = fields.Char(string="File Code", default="New", readonly=True, copy=False, index=True)
-    partner_id = fields.Many2one("res.partner", string="Contact", required=True, ondelete="restrict")
+    partner_id = fields.Many2one("res.partner", string="Contact", ondelete="restrict")
     clinic_company_id = fields.Many2one(
         "res.company", string="Company", required=True, default=lambda self: self.env.company, index=True
     )
@@ -59,8 +59,8 @@ class PtPatient(models.Model):
         string="Governorate",
         default="damietta",
     )
-    phone = fields.Char(string="Phone", related="partner_id.phone", store=True, readonly=False, index=True)
-    email = fields.Char(string="Email", related="partner_id.email", store=True, readonly=False, index=True)
+    phone = fields.Char(string="Phone", index=True)
+    email = fields.Char(string="Email", index=True)
     whatsapp = fields.Char(string="WhatsApp", index=True)
     job_title = fields.Char(string="Job")
     primary_physician = fields.Char(string="Primary Physician")
@@ -96,6 +96,14 @@ class PtPatient(models.Model):
             if record.national_id and not re.fullmatch(r"\d{14}", record.national_id):
                 raise ValidationError("National ID must be exactly 14 digits.")
 
+    def _get_partner_vals(self, vals):
+        return {
+            "name": vals.get("name") or "New Patient",
+            "phone": vals.get("phone"),
+            "email": vals.get("email"),
+            "company_type": "person",
+        }
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
@@ -108,4 +116,22 @@ class PtPatient(models.Model):
                     limit=1,
                 )
                 vals["branch_id"] = branch.id
+            if not vals.get("partner_id"):
+                vals["partner_id"] = self.env["res.partner"].create(self._get_partner_vals(vals)).id
         return super().create(vals_list)
+
+    def write(self, vals):
+        result = super().write(vals)
+        sync_fields = {"name", "phone", "email"}
+        if sync_fields.intersection(vals):
+            for record in self.filtered("partner_id"):
+                partner_vals = {}
+                if "name" in vals:
+                    partner_vals["name"] = record.name
+                if "phone" in vals:
+                    partner_vals["phone"] = record.phone
+                if "email" in vals:
+                    partner_vals["email"] = record.email
+                if partner_vals:
+                    record.partner_id.write(partner_vals)
+        return result

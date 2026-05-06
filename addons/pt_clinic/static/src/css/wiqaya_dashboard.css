@@ -297,3 +297,54 @@
         border-radius: 14px;
     }
 }
+
+/* Cleaner patient file layout for desktop, tablets, and the free Odoo PWA/mobile flow. */
+.o_pt_clinic_patient_form .o_pt_clinic_form_header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+    padding: 18px 20px;
+    border: 1px solid var(--wiqaya-border);
+    border-radius: 18px;
+    background: linear-gradient(135deg, #ffffff 0%, #fbf9ff 70%, #f3fbf8 100%);
+}
+
+.o_pt_clinic_patient_form .o_pt_clinic_form_eyebrow {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--wiqaya-muted);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.o_pt_clinic_patient_form .o_pt_clinic_form_header h1 {
+    margin: 0;
+}
+
+.o_pt_clinic_patient_form .o_pt_clinic_file_code {
+    flex: 0 0 auto;
+    min-width: 120px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--wiqaya-primary-soft);
+    color: var(--wiqaya-primary-dark);
+    font-weight: 800;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .o_pt_clinic_patient_form .o_pt_clinic_form_header {
+        flex-direction: column;
+        margin-bottom: 12px;
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+    .o_pt_clinic_patient_form .o_pt_clinic_file_code {
+        width: 100%;
+    }
+}

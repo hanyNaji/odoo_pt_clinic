@@ -10,7 +10,7 @@ class PtClinicDashboard(models.Model):
     _name = "pt.clinic.dashboard"
     _description = "Wiqaya Clinic Dashboard"
 
-    name = fields.Char(default="وقاية", required=True)
+    name = fields.Char(default="Wiqaya", required=True, translate=True)
     patient_count = fields.Integer(compute="_compute_counts")
     appointment_today_count = fields.Integer(compute="_compute_counts")
     assessment_count = fields.Integer(compute="_compute_counts")
@@ -105,7 +105,7 @@ class PtClinicDashboard(models.Model):
 
         company = self.env.ref("base.main_company", raise_if_not_found=False)
         if company:
-            company.write({"name": "وقاية", "logo": logo_b64})
+            company.write({"name": "Wiqaya", "logo": logo_b64})
 
         for xmlid in ("base.user_admin", "base.default_user"):
             user = self.env.ref(xmlid, raise_if_not_found=False)
@@ -114,7 +114,9 @@ class PtClinicDashboard(models.Model):
 
         main_branches = self.env["pt.branch"].search([("code", "=", "MAIN")])
         if main_branches:
-            main_branches.write({"name": "وقاية - الفرع الرئيسي", "active": True})
+            main_branches.write({"name": "Wiqaya - Main Branch", "active": True})
+            if arabic_lang:
+                main_branches.with_context(lang=arabic_lang).write({"name": "وقاية - الفرع الرئيسي"})
 
         legacy_branches = self.env["pt.branch"].search([("name", "ilike", "Damietta")])
         if legacy_branches:
@@ -122,13 +124,13 @@ class PtClinicDashboard(models.Model):
 
         root_menu = self.env.ref("pt_clinic.menu_pt_clinic_root", raise_if_not_found=False)
         if root_menu:
-            root_menu.write({"name": "وقاية", "web_icon": "pt_clinic,static/src/img/wiqaya_logo.png"})
+            root_menu.write({"name": "Wiqaya", "web_icon": "pt_clinic,static/src/img/wiqaya_logo.png"})
             if arabic_lang:
                 root_menu.with_context(lang=arabic_lang).write({"name": "وقاية"})
 
         dashboard_action = self.env.ref("pt_clinic.action_pt_clinic_dashboard", raise_if_not_found=False)
         if dashboard_action:
-            dashboard_action.write({"name": "وقاية"})
+            dashboard_action.write({"name": "Wiqaya"})
             if arabic_lang:
                 dashboard_action.with_context(lang=arabic_lang).write({"name": "وقاية"})
         return True

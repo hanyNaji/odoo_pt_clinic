@@ -5,41 +5,41 @@
             <t t-foreach="docs" t-as="o">
                 <div class="page">
                     <div class="text-center mb-3">
-                        <h2 t-esc="o.clinic_company_id.name or 'وقاية'"/>
-                        <h3>استمارة استقبال مريض</h3>
+                        <h2 t-esc="o.clinic_company_id.name or 'Wiqaya'"/>
+                        <h3>Patient Intake Form</h3>
                         <p t-if="o.branch_id"><span t-field="o.branch_id"/></p>
                     </div>
                     <table class="table table-sm table-bordered">
                         <tbody>
                             <tr>
-                                <th>اسم المريض</th>
+                                <th>Patient Name</th>
                                 <td><span t-field="o.name"/></td>
-                                <th>كود الملف</th>
+                                <th>File Code</th>
                                 <td><span t-field="o.code"/></td>
                             </tr>
                             <tr>
-                                <th>الرقم القومي</th>
+                                <th>National ID</th>
                                 <td><span t-field="o.national_id"/></td>
-                                <th>الهاتف</th>
+                                <th>Phone</th>
                                 <td><span t-field="o.phone"/></td>
                             </tr>
                             <tr>
-                                <th>واتساب</th>
+                                <th>WhatsApp</th>
                                 <td><span t-field="o.whatsapp"/></td>
-                                <th>تاريخ الميلاد</th>
+                                <th>Date of Birth</th>
                                 <td><span t-field="o.birth_date"/></td>
                             </tr>
                             <tr>
-                                <th>جهة العمل</th>
+                                <th>Employer Company</th>
                                 <td><span t-field="o.company_id"/></td>
-                                <th>الفرع</th>
+                                <th>Branch</th>
                                 <td><span t-field="o.branch_id"/></td>
                             </tr>
                         </tbody>
                     </table>
-                    <h4>التاريخ المرضي</h4>
+                    <h4>Medical History</h4>
                     <p t-field="o.medical_history"/>
-                    <h4>الحساسية والملاحظات الطبية</h4>
+                    <h4>Allergies and Medical Notes</h4>
                     <p t-field="o.allergy_notes"/>
                 </div>
             </t>
@@ -62,21 +62,21 @@
             <t t-foreach="docs" t-as="o">
                 <div class="page">
                     <div class="text-center mb-3">
-                        <h2 t-esc="o.clinic_company_id.name or 'وقاية'"/>
-                        <h3>نموذج موافقة على العلاج الطبيعي</h3>
+                        <h2 t-esc="o.clinic_company_id.name or 'Wiqaya'"/>
+                        <h3>Physical Therapy Consent Form</h3>
                     </div>
                     <p>
-                        أقر أنا
+                        I,
                         <strong><span t-field="o.name"/></strong>
-                        بأنني وافقت على تلقي خدمات العلاج الطبيعي بعد شرح الخطة العلاجية والفوائد المتوقعة
-                        والمخاطر المحتملة.
+                        confirm that I agree to receive physical therapy services after the treatment plan, expected benefits,
+                        and possible risks have been explained.
                     </p>
-                    <p><strong>الرقم القومي:</strong> <span t-field="o.national_id"/></p>
-                    <p><strong>الفرع:</strong> <span t-field="o.branch_id"/></p>
+                    <p><strong>National ID:</strong> <span t-field="o.national_id"/></p>
+                    <p><strong>Branch:</strong> <span t-field="o.branch_id"/></p>
                     <br/>
-                    <p>توقيع المريض: __________________________</p>
-                    <p>توقيع الأخصائي: ________________________</p>
-                    <p>التاريخ: ____________________</p>
+                    <p>Patient Signature: __________________________</p>
+                    <p>Therapist Signature: ________________________</p>
+                    <p>Date: ____________________</p>
                 </div>
             </t>
         </t>
@@ -98,19 +98,19 @@
             <t t-foreach="docs" t-as="o">
                 <div class="page">
                     <div class="text-center mb-3">
-                        <h2 t-esc="o.company_id.name or 'وقاية'"/>
-                        <h3>فاتورة جلسات علاج طبيعي</h3>
+                        <h2 t-esc="o.company_id.name or 'Wiqaya'"/>
+                        <h3>Physical Therapy Session Invoice</h3>
                     </div>
-                    <p><strong>رقم الفاتورة:</strong> <span t-field="o.name"/></p>
-                    <p><strong>التاريخ:</strong> <span t-field="o.invoice_date"/></p>
-                    <p><strong>العميل:</strong> <span t-field="o.partner_id"/></p>
+                    <p><strong>Invoice Number:</strong> <span t-field="o.name"/></p>
+                    <p><strong>Date:</strong> <span t-field="o.invoice_date"/></p>
+                    <p><strong>Customer:</strong> <span t-field="o.partner_id"/></p>
                     <table class="table table-sm table-bordered mt16">
                         <thead>
                             <tr>
-                                <th>الوصف</th>
-                                <th>الكمية</th>
-                                <th>سعر الوحدة</th>
-                                <th>الإجمالي</th>
+                                <th>Description</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -122,7 +122,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p class="text-end"><strong>الإجمالي الكلي:</strong> <span t-field="o.amount_total"/></p>
+                    <p class="text-end"><strong>Grand Total:</strong> <span t-field="o.amount_total"/></p>
                 </div>
             </t>
         </t>
