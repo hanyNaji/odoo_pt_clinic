@@ -228,3 +228,72 @@
         font-size: 14px;
     }
 }
+
+/* Mobile app/touch workflow helpers for Wiqaya operational views. */
+.o_kanban_view .o_pt_clinic_mobile_card {
+    min-height: 132px;
+    padding: 14px;
+    border: 1px solid var(--wiqaya-border);
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.05);
+}
+
+.o_pt_clinic_mobile_card .o_pt_clinic_card_title {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--wiqaya-text);
+}
+
+.o_pt_clinic_mobile_card .o_pt_clinic_card_meta {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 5px;
+    color: var(--wiqaya-muted);
+    line-height: 1.4;
+}
+
+.o_pt_clinic_mobile_card .o_pt_clinic_card_footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 12px;
+}
+
+.o_pt_clinic_touch_form .o_form_sheet_bg .o_form_sheet {
+    max-width: 1120px;
+}
+
+@media (max-width: 768px) {
+    .o_pt_clinic_touch_form .o_form_sheet_bg .o_form_sheet {
+        margin: 0;
+        padding: 12px;
+        border-radius: 0;
+        max-width: none;
+    }
+
+    .o_pt_clinic_touch_form .o_form_statusbar {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .o_pt_clinic_touch_form header .btn,
+    .o_pt_clinic_touch_form .o_statusbar_buttons .btn {
+        min-height: 42px;
+        margin-bottom: 4px;
+        border-radius: 10px;
+        font-weight: 700;
+    }
+
+    .o_pt_clinic_touch_form .o_field_widget input,
+    .o_pt_clinic_touch_form .o_field_widget textarea,
+    .o_pt_clinic_touch_form .o_input {
+        min-height: 42px;
+    }
+
+    .o_kanban_view .o_pt_clinic_mobile_card {
+        border-radius: 14px;
+    }
+}

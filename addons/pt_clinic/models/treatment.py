@@ -8,7 +8,7 @@ class PtAssessment(models.Model):
     _order = "assessment_date desc, id desc"
 
     name = fields.Char(string="اسم التقييم | Assessment", required=True)
-    patient_id = fields.Many2one("pt.patient", string="المريض | Patient", required=True, ondelete="restrict")
+    patient_id = fields.Many2one("pt.patient", string="المريض | Patient", required=True, ondelete="restrict", index=True)
     clinic_company_id = fields.Many2one(
         "res.company", string="الشركة | Company", required=True, default=lambda self: self.env.company, index=True
     )
@@ -17,8 +17,8 @@ class PtAssessment(models.Model):
         string="الفرع | Branch",
         domain="[('clinic_company_id', '=', clinic_company_id)]",
     )
-    therapist_id = fields.Many2one("res.users", string="المعالج | Therapist", required=True, default=lambda self: self.env.user)
-    assessment_date = fields.Date(string="تاريخ التقييم | Assessment Date", required=True, default=fields.Date.context_today)
+    therapist_id = fields.Many2one("res.users", string="المعالج | Therapist", required=True, default=lambda self: self.env.user, index=True)
+    assessment_date = fields.Date(string="تاريخ التقييم | Assessment Date", required=True, default=fields.Date.context_today, index=True)
     patient_code = fields.Char(string="MRN / ID", related="patient_id.code", store=False)
     patient_age = fields.Integer(string="العمر | Age", related="patient_id.age_years", store=False)
     patient_gender = fields.Selection(related="patient_id.gender", string="النوع | Gender", store=False)
@@ -77,7 +77,7 @@ class PtTreatmentPlan(models.Model):
     _order = "plan_date desc, id desc"
 
     name = fields.Char(string="اسم الخطة | Treatment Plan", required=True)
-    patient_id = fields.Many2one("pt.patient", string="المريض | Patient", required=True, ondelete="restrict")
+    patient_id = fields.Many2one("pt.patient", string="المريض | Patient", required=True, ondelete="restrict", index=True)
     clinic_company_id = fields.Many2one(
         "res.company", string="الشركة | Company", required=True, default=lambda self: self.env.company, index=True
     )
@@ -86,11 +86,11 @@ class PtTreatmentPlan(models.Model):
         string="الفرع | Branch",
         domain="[('clinic_company_id', '=', clinic_company_id)]",
     )
-    therapist_id = fields.Many2one("res.users", string="المعالج | Therapist", required=True, default=lambda self: self.env.user)
-    plan_date = fields.Date(string="تاريخ الخطة | Plan Date", required=True, default=fields.Date.context_today)
+    therapist_id = fields.Many2one("res.users", string="المعالج | Therapist", required=True, default=lambda self: self.env.user, index=True)
+    plan_date = fields.Date(string="تاريخ الخطة | Plan Date", required=True, default=fields.Date.context_today, index=True)
     plan_time = fields.Char(string="الوقت | Time")
-    start_date = fields.Date(string="تاريخ البداية | Start Date", required=True, default=fields.Date.context_today)
-    end_date = fields.Date(string="تاريخ النهاية | End Date")
+    start_date = fields.Date(string="تاريخ البداية | Start Date", required=True, default=fields.Date.context_today, index=True)
+    end_date = fields.Date(string="تاريخ النهاية | End Date", index=True)
     patient_gender = fields.Selection(related="patient_id.gender", string="النوع | Gender", store=False)
     patient_age = fields.Integer(related="patient_id.age_years", string="العمر | Age", store=False)
     patient_pin = fields.Char(string="PIN", related="patient_id.code", store=False)
@@ -200,7 +200,7 @@ class PtSession(models.Model):
     _order = "session_datetime desc"
 
     name = fields.Char(string="اسم الجلسة | Session", required=True, default="جلسة علاج | Therapy Session")
-    patient_id = fields.Many2one("pt.patient", string="المريض | Patient", required=True, ondelete="restrict")
+    patient_id = fields.Many2one("pt.patient", string="المريض | Patient", required=True, ondelete="restrict", index=True)
     clinic_company_id = fields.Many2one(
         "res.company", string="الشركة | Company", required=True, default=lambda self: self.env.company, index=True
     )
@@ -212,8 +212,8 @@ class PtSession(models.Model):
     appointment_id = fields.Many2one("pt.appointment", string="الموعد | Appointment", ondelete="set null")
     treatment_plan_id = fields.Many2one("pt.treatment.plan", string="الخطة العلاجية | Treatment Plan", ondelete="set null")
     therapy_sheet_id = fields.Many2one("pt.therapy.sheet", string="الملف العلاجي | Therapy Sheet", ondelete="set null")
-    therapist_id = fields.Many2one("res.users", string="المعالج | Therapist", required=True, default=lambda self: self.env.user)
-    session_datetime = fields.Datetime(string="تاريخ الجلسة | Session Date", required=True, default=fields.Datetime.now)
+    therapist_id = fields.Many2one("res.users", string="المعالج | Therapist", required=True, default=lambda self: self.env.user, index=True)
+    session_datetime = fields.Datetime(string="تاريخ الجلسة | Session Date", required=True, default=fields.Datetime.now, index=True)
     duration_minutes = fields.Integer(string="المدة بالدقائق | Duration", default=45)
     pain_before = fields.Integer(string="الألم قبل الجلسة | Pain Before")
     pain_after = fields.Integer(string="الألم بعد الجلسة | Pain After")
@@ -222,7 +222,7 @@ class PtSession(models.Model):
     assessment_notes = fields.Text(string="Assessment")
     plan_notes = fields.Text(string="Plan")
     package_id = fields.Many2one("pt.treatment.package", string="الباقة | Package", ondelete="set null")
-    billed = fields.Boolean(string="تمت الفوترة | Billed", default=False)
+    billed = fields.Boolean(string="تمت الفوترة | Billed", default=False, index=True)
 
     @api.onchange("appointment_id")
     def _onchange_appointment_id(self):
@@ -299,7 +299,7 @@ class PtTherapySheet(models.Model):
     _order = "sheet_date desc, id desc"
 
     name = fields.Char(string="اسم الملف | Sheet Name", required=True)
-    patient_id = fields.Many2one("pt.patient", string="المريض | Patient", required=True, ondelete="restrict")
+    patient_id = fields.Many2one("pt.patient", string="المريض | Patient", required=True, ondelete="restrict", index=True)
     clinic_company_id = fields.Many2one(
         "res.company", string="الشركة | Company", required=True, default=lambda self: self.env.company, index=True
     )
@@ -308,8 +308,8 @@ class PtTherapySheet(models.Model):
         string="الفرع | Branch",
         domain="[('clinic_company_id', '=', clinic_company_id)]",
     )
-    therapist_id = fields.Many2one("res.users", string="المعالج | Therapist", default=lambda self: self.env.user)
-    sheet_date = fields.Date(string="تاريخ الملف | Sheet Date", required=True, default=fields.Date.context_today)
+    therapist_id = fields.Many2one("res.users", string="المعالج | Therapist", default=lambda self: self.env.user, index=True)
+    sheet_date = fields.Date(string="تاريخ الملف | Sheet Date", required=True, default=fields.Date.context_today, index=True)
     case_type = fields.Selection(
         [("acute", "Acute"), ("chronic", "Chronic"), ("protective", "Protective")],
         string="نوع الحالة | Case Type",

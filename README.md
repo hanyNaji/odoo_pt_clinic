@@ -55,6 +55,7 @@ python -m compileall addons\pt_clinic tests tools
 ## Documentation
 
 - [Deployment Guide](docs/deployment.md)
+- [Production Readiness Notes](docs/production_readiness.md)
 
 ## License
 

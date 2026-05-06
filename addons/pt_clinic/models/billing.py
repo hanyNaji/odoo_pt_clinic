@@ -9,7 +9,7 @@ class PtTreatmentPackage(models.Model):
     _description = "Wiqaya Treatment Package"
 
     name = fields.Char(string="اسم الباقة | Package", required=True)
-    patient_id = fields.Many2one("pt.patient", string="المريض | Patient", required=True, ondelete="restrict")
+    patient_id = fields.Many2one("pt.patient", string="المريض | Patient", required=True, ondelete="restrict", index=True)
     clinic_company_id = fields.Many2one(
         "res.company", string="الشركة | Company", required=True, default=lambda self: self.env.company, index=True
     )
@@ -25,7 +25,7 @@ class PtTreatmentPackage(models.Model):
     used_sessions = fields.Integer(string="المستخدم | Used Sessions", compute="_compute_usage", store=True)
     remaining_sessions = fields.Integer(string="المتبقي | Remaining Sessions", compute="_compute_usage", store=True)
     start_date = fields.Date(string="تاريخ البداية | Start Date", default=fields.Date.context_today)
-    end_date = fields.Date(string="تاريخ النهاية | End Date")
+    end_date = fields.Date(string="تاريخ النهاية | End Date", index=True)
     billing_mode = fields.Selection(
         [("prepaid", "مدفوعة مقدما | Prepaid"), ("postpaid", "حسب الجلسات | Postpaid by Sessions")],
         string="نمط الفوترة | Billing Mode",
@@ -108,7 +108,7 @@ class PtDiscountOffer(models.Model):
 
     name = fields.Char(string="اسم العرض | Offer", required=True)
     code = fields.Char(string="كود العرض | Offer Code", required=True)
-    active = fields.Boolean(string="نشط | Active", default=True)
+    active = fields.Boolean(string="نشط | Active", default=True, index=True)
     clinic_company_id = fields.Many2one(
         "res.company", string="الشركة | Company", required=True, default=lambda self: self.env.company, index=True
     )
@@ -121,8 +121,8 @@ class PtDiscountOffer(models.Model):
         [("percent", "نسبة | Percent"), ("fixed", "قيمة | Fixed")], string="نوع العرض | Offer Type", required=True, default="percent"
     )
     value = fields.Float(string="القيمة | Value", required=True)
-    start_date = fields.Date(string="تاريخ البداية | Start Date")
-    end_date = fields.Date(string="تاريخ النهاية | End Date")
+    start_date = fields.Date(string="تاريخ البداية | Start Date", index=True)
+    end_date = fields.Date(string="تاريخ النهاية | End Date", index=True)
 
     @api.constrains("offer_type", "value", "start_date", "end_date")
     def _check_offer_values(self):

@@ -1,4 +1,7 @@
 import base64
+from datetime import datetime, time
+
+import pytz
 
 from odoo import fields, models, tools
 
@@ -16,34 +19,46 @@ class PtClinicDashboard(models.Model):
     package_count = fields.Integer(compute="_compute_counts")
     reminder_pending_count = fields.Integer(compute="_compute_counts")
 
-    def _compute_counts(self):
+    def _today_utc_bounds(self):
+        """Return the current user's local day as UTC-naive datetimes for Odoo domains."""
         today = fields.Date.context_today(self)
-        start_day = fields.Datetime.to_datetime(f"{today} 00:00:00")
-        end_day = fields.Datetime.to_datetime(f"{today} 23:59:59")
-        company_id = self.env.company.id
-        for record in self:
-            record.patient_count = self.env["pt.patient"].search_count([("clinic_company_id", "=", company_id)])
-            record.appointment_today_count = self.env["pt.appointment"].search_count(
+        user_tz = pytz.timezone(self.env.user.tz or "UTC")
+        start_local = user_tz.localize(datetime.combine(today, time.min))
+        end_local = user_tz.localize(datetime.combine(today, time.max))
+        return (
+            start_local.astimezone(pytz.UTC).replace(tzinfo=None),
+            end_local.astimezone(pytz.UTC).replace(tzinfo=None),
+        )
+
+    def _company_count(self, model_name, extra_domain=None):
+        domain = [("clinic_company_id", "=", self.env.company.id)]
+        if extra_domain:
+            domain.extend(extra_domain)
+        return self.env[model_name].search_count(domain)
+
+    def _compute_counts(self):
+        start_day, end_day = self._today_utc_bounds()
+        counts = {
+            "patient_count": self._company_count("pt.patient"),
+            "appointment_today_count": self._company_count(
+                "pt.appointment",
                 [
-                    ("clinic_company_id", "=", company_id),
                     ("start_datetime", ">=", start_day),
                     ("start_datetime", "<=", end_day),
                     ("status", "in", ["draft", "confirmed"]),
-                ]
-            )
-            record.assessment_count = self.env["pt.assessment"].search_count([("clinic_company_id", "=", company_id)])
-            record.active_plan_count = self.env["pt.treatment.plan"].search_count(
-                [("clinic_company_id", "=", company_id), ("status", "=", "active")]
-            )
-            record.session_count = self.env["pt.session"].search_count([("clinic_company_id", "=", company_id)])
-            record.package_count = self.env["pt.treatment.package"].search_count([("clinic_company_id", "=", company_id)])
-            record.reminder_pending_count = self.env["pt.appointment"].search_count(
-                [
-                    ("clinic_company_id", "=", company_id),
-                    ("status", "in", ["draft", "confirmed"]),
-                    ("reminder_sent", "=", False),
-                ]
-            )
+                ],
+            ),
+            "assessment_count": self._company_count("pt.assessment"),
+            "active_plan_count": self._company_count("pt.treatment.plan", [("status", "=", "active")]),
+            "session_count": self._company_count("pt.session"),
+            "package_count": self._company_count("pt.treatment.package"),
+            "reminder_pending_count": self._company_count(
+                "pt.appointment", [("status", "in", ["draft", "confirmed"]), ("reminder_sent", "=", False)]
+            ),
+        }
+        for record in self:
+            for field_name, value in counts.items():
+                record[field_name] = value
 
     def _action_from_xmlid(self, xmlid):
         return self.env.ref(xmlid).sudo().read()[0]

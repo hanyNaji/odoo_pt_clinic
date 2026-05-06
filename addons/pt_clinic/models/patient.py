@@ -8,6 +8,7 @@ class PtPatient(models.Model):
     _name = "pt.patient"
     _description = "Wiqaya Patient"
     _inherit = ["mail.thread", "mail.activity.mixin"]
+    _rec_names_search = ["name", "code", "phone", "whatsapp", "national_id"]
     _code_uniq = models.Constraint(
         "unique(code)",
         "Patient code must be unique.",
@@ -26,7 +27,7 @@ class PtPatient(models.Model):
         return branch.id
 
     name = fields.Char(string="Patient Name", required=True, tracking=True)
-    code = fields.Char(string="File Code", default="New", readonly=True, copy=False)
+    code = fields.Char(string="File Code", default="New", readonly=True, copy=False, index=True)
     partner_id = fields.Many2one("res.partner", string="Contact", required=True, ondelete="restrict")
     clinic_company_id = fields.Many2one(
         "res.company", string="Company", required=True, default=lambda self: self.env.company, index=True
@@ -37,6 +38,7 @@ class PtPatient(models.Model):
         domain="[('clinic_company_id', '=', clinic_company_id)]",
         default=_default_branch_id,
         tracking=True,
+        index=True,
     )
     birth_date = fields.Date(string="Date of Birth")
     age_years = fields.Integer(string="Age", compute="_compute_age_years", store=False)
@@ -45,7 +47,7 @@ class PtPatient(models.Model):
         string="Gender",
         default="other",
     )
-    national_id = fields.Char(string="National ID", tracking=True)
+    national_id = fields.Char(string="National ID", tracking=True, index=True)
     governorate = fields.Selection(
         [
             ("damietta", "Damietta"),
@@ -57,9 +59,9 @@ class PtPatient(models.Model):
         string="Governorate",
         default="damietta",
     )
-    phone = fields.Char(string="Phone", related="partner_id.phone", store=True, readonly=False)
-    email = fields.Char(string="Email", related="partner_id.email", store=True, readonly=False)
-    whatsapp = fields.Char(string="WhatsApp")
+    phone = fields.Char(string="Phone", related="partner_id.phone", store=True, readonly=False, index=True)
+    email = fields.Char(string="Email", related="partner_id.email", store=True, readonly=False, index=True)
+    whatsapp = fields.Char(string="WhatsApp", index=True)
     job_title = fields.Char(string="Job")
     primary_physician = fields.Char(string="Primary Physician")
     emergency_contact = fields.Char(string="Emergency Contact")
@@ -69,7 +71,7 @@ class PtPatient(models.Model):
     company_id = fields.Many2one(
         "res.partner", string="Employer Company", domain=[("is_company", "=", True)]
     )
-    active = fields.Boolean(string="Active", default=True)
+    active = fields.Boolean(string="Active", default=True, index=True)
     appointment_ids = fields.One2many("pt.appointment", "patient_id", string="Appointments")
     session_ids = fields.One2many("pt.session", "patient_id", string="Sessions")
     assessment_ids = fields.One2many("pt.assessment", "patient_id", string="Assessments")
