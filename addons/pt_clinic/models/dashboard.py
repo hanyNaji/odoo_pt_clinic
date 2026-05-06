@@ -5,6 +5,8 @@ import pytz
 
 from odoo import fields, models, tools
 
+from ..hooks import migrate_translated_char_columns
+
 
 class PtClinicDashboard(models.Model):
     _name = "pt.clinic.dashboard"
@@ -14,26 +16,7 @@ class PtClinicDashboard(models.Model):
 
     def init(self):
         super().init()
-        self.env.cr.execute(
-            """
-            SELECT udt_name
-              FROM information_schema.columns
-             WHERE table_name = 'pt_clinic_dashboard'
-               AND column_name = 'name'
-            """
-        )
-        column_info = self.env.cr.fetchone()
-        if column_info and column_info[0] != "jsonb":
-            self.env.cr.execute(
-                """
-                ALTER TABLE pt_clinic_dashboard
-                ALTER COLUMN name TYPE jsonb
-                USING CASE
-                    WHEN name IS NULL THEN NULL
-                    ELSE jsonb_build_object('en_US', name::text)
-                END
-                """
-            )
+        migrate_translated_char_columns(self.env)
 
     patient_count = fields.Integer(compute="_compute_counts")
     appointment_today_count = fields.Integer(compute="_compute_counts")

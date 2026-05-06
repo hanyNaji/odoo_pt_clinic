@@ -5,6 +5,7 @@
     "category": "Healthcare",
     "author": "Wiqaya Clinic Team",
     "license": "LGPL-3",
+    "pre_init_hook": "pre_init_hook",
     "depends": ["base", "mail", "contacts", "calendar", "product", "account"],
     "assets": {
         "web.assets_backend": [
