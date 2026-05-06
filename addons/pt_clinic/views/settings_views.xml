@@ -6,15 +6,15 @@
         <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
-        <app string="وقاية" name="pt_clinic_settings">
-                    <block title="التذكيرات | Reminders">
-                        <setting string="موعد التذكير | Reminder Lead Time" help="How many hours before appointment reminder is sent.">
+        <app string="Wiqaya" name="pt_clinic_settings">
+                    <block title="Reminders">
+                        <setting string="Reminder Lead Time" help="How many hours before appointment reminder is sent.">
                             <field name="pt_reminder_hours_before"/>
                         </setting>
-                        <setting string="رابط SMS Gateway" help="Optional HTTP endpoint that receives JSON payload: channel,to,message.">
+                        <setting string="SMS Gateway URL" help="Optional HTTP endpoint that receives JSON payload: channel,to,message.">
                             <field name="pt_sms_gateway_url" placeholder="https://provider.example/send-sms"/>
                         </setting>
-                        <setting string="رابط WhatsApp Gateway" help="Optional HTTP endpoint that receives JSON payload: channel,to,message.">
+                        <setting string="WhatsApp Gateway URL" help="Optional HTTP endpoint that receives JSON payload: channel,to,message.">
                             <field name="pt_whatsapp_gateway_url" placeholder="https://provider.example/send-whatsapp"/>
                         </setting>
                     </block>
@@ -61,7 +61,7 @@
     </record>
 
     <record id="action_pt_reminder_logs" model="ir.actions.act_window">
-        <field name="name">سجل التذكيرات | Reminder Logs</field>
+        <field name="name">Reminder Logs</field>
         <field name="res_model">pt.reminder.log</field>
         <field name="view_mode">list,form</field>
     </record>

@@ -1,6 +1,6 @@
 # Wiqaya Physiotherapy Clinic for Odoo 19
 
-`pt_clinic` is an Arabic-first Odoo 19 module for physiotherapy clinic operations. It combines reception, therapist, billing, and reporting workflows in one application, with terminology and printouts adapted to a real outpatient physiotherapy setting.
+`pt_clinic` is a bilingual Odoo 19 module for physiotherapy clinic operations. It combines reception, therapist, billing, and reporting workflows in one application, with terminology and printouts adapted to a real outpatient physiotherapy setting.
 
 ## What it covers
 
@@ -9,7 +9,7 @@
 - physiotherapy assessment sheets and care plans
 - session documentation and therapy follow-up sheets
 - packages, billing, contracts, and clinic reporting
-- Arabic UI with the English medical terms commonly used in practice
+- clean Arabic-only UI when Arabic is selected and English-only UI when English is selected
 
 ## Repository layout
 
@@ -37,9 +37,21 @@ Then open:
 http://127.0.0.1:8069/web/login?db=wiqaya19
 ```
 
+
+## Free mobile usage
+
+For a no-extra-cost mobile workflow, use Odoo from the phone browser as a Progressive Web App (PWA):
+
+1. Open the Wiqaya Odoo URL on the phone and sign in.
+2. Android Chrome: open the browser menu and choose **Install app**.
+3. iPhone Safari: open **Share** and choose **Add to Home Screen**.
+4. Use the Wiqaya app icon from the home screen. The module keeps the main clinic views touch-friendly for this PWA/mobile experience.
+
+The store apps can also open Odoo databases, but the PWA is the recommended free option because it uses the standard responsive Odoo web client without requiring an extra custom mobile module.
+
 ## Module highlights
 
-- Arabic-first patient, appointment, treatment, billing, and report menus
+- translated patient, appointment, treatment, billing, and report menus with no mixed Arabic/English labels
 - physiotherapy-specific assessment and care plan records
 - printable therapy sheets matching common paper-clinic workflows
 - role-based access for manager, therapist, assistant, and billing staff

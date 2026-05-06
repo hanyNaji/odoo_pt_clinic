@@ -29,12 +29,11 @@
             <list decoration-muted="not active">
                 <field name="code"/>
                 <field name="name"/>
-                <field name="age_years"/>
-                <field name="national_id"/>
                 <field name="phone"/>
+                <field name="whatsapp" optional="hide"/>
+                <field name="age_years" optional="show"/>
                 <field name="branch_id"/>
-                <field name="company_id"/>
-                <field name="active"/>
+                <field name="national_id" optional="hide"/>
             </list>
         </field>
     </record>
@@ -43,58 +42,55 @@
         <field name="name">pt.patient.form</field>
         <field name="model">pt.patient</field>
         <field name="arch" type="xml">
-            <form string="Patient" class="o_pt_clinic_touch_form">
+            <form string="Patient" class="o_pt_clinic_touch_form o_pt_clinic_patient_form">
                 <sheet>
-                    <group>
+                    <div class="o_pt_clinic_form_header">
+                        <div>
+                            <span class="o_pt_clinic_form_eyebrow">Patient File</span>
+                            <h1><field name="name" placeholder="Patient name"/></h1>
+                        </div>
+                        <field name="code" readonly="1" class="oe_inline o_pt_clinic_file_code"/>
+                    </div>
+                    <group string="Essential Details">
                         <group>
-                            <field name="code" readonly="1"/>
-                            <field name="name"/>
-                            <field name="partner_id"/>
+                            <field name="phone"/>
+                            <field name="whatsapp"/>
+                            <field name="branch_id"/>
+                            <field name="clinic_company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
                             <field name="birth_date"/>
                             <field name="age_years" readonly="1"/>
                             <field name="gender"/>
                             <field name="national_id"/>
                             <field name="governorate"/>
                         </group>
-                        <group>
-                            <field name="clinic_company_id" groups="base.group_multi_company"/>
-                            <field name="branch_id"/>
-                            <field name="phone"/>
-                            <field name="email"/>
-                            <field name="whatsapp"/>
-                            <field name="job_title"/>
-                            <field name="primary_physician"/>
-                            <field name="company_id"/>
-                            <field name="active"/>
-                        </group>
-                    </group>
-                    <group>
-                        <group>
-                            <field name="emergency_contact"/>
-                            <field name="emergency_relation"/>
-                        </group>
                     </group>
                     <notebook>
-                        <page string="Medical">
+                        <page string="Appointments">
+                            <field name="appointment_ids" context="{'default_patient_id': id}"/>
+                        </page>
+                        <page string="Medical Notes">
                             <group>
-                                <field name="medical_history"/>
-                                <field name="allergy_notes"/>
+                                <field name="medical_history" placeholder="Relevant medical history"/>
+                                <field name="allergy_notes" placeholder="Allergies or alerts"/>
                             </group>
                         </page>
-                        <page string="Appointments">
-                            <field name="appointment_ids"/>
-                        </page>
-                        <page string="Assessments">
-                            <field name="assessment_ids"/>
-                        </page>
-                        <page string="Care Plans">
-                            <field name="treatment_plan_ids"/>
-                        </page>
-                        <page string="Sessions">
-                            <field name="session_ids"/>
-                        </page>
-                        <page string="Therapy Sheets">
-                            <field name="therapy_sheet_ids"/>
+                        <page string="Optional Details">
+                            <group>
+                                <group string="Emergency Contact">
+                                    <field name="emergency_contact"/>
+                                    <field name="emergency_relation"/>
+                                </group>
+                                <group string="Administration">
+                                    <field name="email"/>
+                                    <field name="job_title"/>
+                                    <field name="primary_physician"/>
+                                    <field name="company_id"/>
+                                    <field name="partner_id" readonly="1"/>
+                                    <field name="active"/>
+                                </group>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>

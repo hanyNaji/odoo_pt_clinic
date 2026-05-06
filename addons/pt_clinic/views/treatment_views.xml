@@ -144,7 +144,7 @@
     </record>
 
     <record id="action_pt_assessment" model="ir.actions.act_window">
-        <field name="name">التقييمات | Assessments</field>
+        <field name="name">Assessments</field>
         <field name="res_model">pt.assessment</field>
         <field name="view_mode">list,form</field>
     </record>
@@ -169,8 +169,8 @@
         <field name="arch" type="xml">
             <form string="Physiotherapy Care Plan">
                 <header>
-                    <button string="تفعيل | Activate" type="object" name="action_activate" class="btn-primary"/>
-                    <button string="إكمال | Complete" type="object" name="action_complete"/>
+                    <button string="Activate" type="object" name="action_activate" class="btn-primary"/>
+                    <button string="Complete" type="object" name="action_complete"/>
                     <field name="status" widget="statusbar" statusbar_visible="draft,active,completed"/>
                 </header>
                 <sheet>
@@ -271,7 +271,7 @@
     </record>
 
     <record id="action_pt_treatment_plan" model="ir.actions.act_window">
-        <field name="name">خطط العلاج | Treatment Plans</field>
+        <field name="name">Treatment Plans</field>
         <field name="res_model">pt.treatment.plan</field>
         <field name="view_mode">list,form</field>
     </record>
@@ -296,7 +296,7 @@
         <field name="name">pt.session.form</field>
         <field name="model">pt.session</field>
         <field name="arch" type="xml">
-            <form string="الجلسة | Session">
+            <form string="Session">
                 <sheet>
                     <group>
                         <field name="name"/>
@@ -328,7 +328,7 @@
     </record>
 
     <record id="action_pt_session" model="ir.actions.act_window">
-        <field name="name">الجلسات | Sessions</field>
+        <field name="name">Sessions</field>
         <field name="res_model">pt.session</field>
         <field name="view_mode">list,form</field>
     </record>

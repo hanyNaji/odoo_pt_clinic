@@ -52,7 +52,7 @@
     </record>
 
     <record id="action_pt_package" model="ir.actions.act_window">
-        <field name="name">باقات العلاج | Treatment Packages</field>
+        <field name="name">Treatment Packages</field>
         <field name="res_model">pt.treatment.package</field>
         <field name="view_mode">list,form</field>
     </record>
@@ -75,7 +75,7 @@
     </record>
 
     <record id="action_pt_discount_offer" model="ir.actions.act_window">
-        <field name="name">عروض الخصم | Discount Offers</field>
+        <field name="name">Discount Offers</field>
         <field name="res_model">pt.discount.offer</field>
         <field name="view_mode">list,form</field>
     </record>
@@ -99,9 +99,9 @@
         <field name="name">pt.company.contract.form</field>
         <field name="model">pt.company.contract</field>
         <field name="arch" type="xml">
-            <form string="عقد شركة | Company Contract">
+            <form string="Company Contract">
                 <header>
-                    <button string="تفعيل | Activate" type="object" name="action_activate" class="btn-primary"/>
+                    <button string="Activate" type="object" name="action_activate" class="btn-primary"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,active,expired"/>
                 </header>
                 <sheet>
@@ -127,7 +127,7 @@
     </record>
 
     <record id="action_pt_company_contract" model="ir.actions.act_window">
-        <field name="name">عقود الشركات | Company Contracts</field>
+        <field name="name">Company Contracts</field>
         <field name="res_model">pt.company.contract</field>
         <field name="view_mode">list,form</field>
     </record>
@@ -136,7 +136,7 @@
         <field name="name">pt.session.invoicing.wizard.form</field>
         <field name="model">pt.session.invoicing.wizard</field>
         <field name="arch" type="xml">
-            <form string="إنشاء فاتورة جلسات | Create Session Invoice">
+            <form string="Create Session Invoice">
                 <group>
                     <field name="patient_id"/>
                     <field name="session_ids" widget="many2many_tags"/>
@@ -148,15 +148,15 @@
                     <field name="discount_value"/>
                 </group>
                 <footer>
-                    <button name="action_create_invoice" string="إنشاء الفاتورة | Create Invoice" type="object" class="btn-primary"/>
-                    <button string="إلغاء | Cancel" class="btn-secondary" special="cancel"/>
+                    <button name="action_create_invoice" string="Create Invoice" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
         </field>
     </record>
 
     <record id="action_pt_session_invoicing_wizard" model="ir.actions.act_window">
-        <field name="name">فاتورة الجلسات | Session Invoice</field>
+        <field name="name">Session Invoice</field>
         <field name="res_model">pt.session.invoicing.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
