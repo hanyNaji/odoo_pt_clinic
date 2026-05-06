@@ -1,5 +1,7 @@
 from odoo import fields, models
 
+from ..hooks import migrate_translated_char_columns
+
 
 class PtBranch(models.Model):
     _name = "pt.branch"
@@ -14,26 +16,7 @@ class PtBranch(models.Model):
 
     def init(self):
         super().init()
-        self.env.cr.execute(
-            """
-            SELECT udt_name
-              FROM information_schema.columns
-             WHERE table_name = 'pt_branch'
-               AND column_name = 'name'
-            """
-        )
-        column_info = self.env.cr.fetchone()
-        if column_info and column_info[0] != "jsonb":
-            self.env.cr.execute(
-                """
-                ALTER TABLE pt_branch
-                ALTER COLUMN name TYPE jsonb
-                USING CASE
-                    WHEN name IS NULL THEN NULL
-                    ELSE jsonb_build_object('en_US', name::text)
-                END
-                """
-            )
+        migrate_translated_char_columns(self.env)
 
     code = fields.Char(string="Branch Code", required=True)
     clinic_company_id = fields.Many2one(
