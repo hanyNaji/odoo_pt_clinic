@@ -1,7 +1,5 @@
 from odoo import fields, models
 
-from ..hooks import migrate_translated_char_columns
-
 
 class PtBranch(models.Model):
     _name = "pt.branch"
@@ -12,11 +10,9 @@ class PtBranch(models.Model):
         "Branch code must be unique per company.",
     )
 
-    name = fields.Char(string="Branch", required=True, translate=True)
-
-    def init(self):
-        super().init()
-        migrate_translated_char_columns(self.env)
+    # Keep business record names as plain Char values. UI labels are translated via i18n files.
+    # This avoids Odoo 19 jsonb translated-field reads on legacy varchar columns.
+    name = fields.Char(string="Branch", required=True)
 
     code = fields.Char(string="Branch Code", required=True)
     clinic_company_id = fields.Many2one(
